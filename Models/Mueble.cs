@@ -4,7 +4,7 @@ namespace LuzHogar.Models
 {
     public class Mueble
     {
-        [Required]
+
         public int Id { get; set; }
 
         [Required]
