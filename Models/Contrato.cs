@@ -2,12 +2,18 @@ namespace LuzHogar.Models
 {
     public class Contrato
     {
-        public string NombreCliente{get; set;}
+        public int Id { get; set; }
 
-        public string DireccionCliente{get; set;}
+        public Cliente Cliente { get; set; }
 
-        public string NombreProducto{get; set; }
+        public int ClienteId { get; set; }
 
-        public float PrecioTotal{get; set;}
+        public Mueble Mueble { get; set; }
+
+        public int MuebleId { get; set; }
+
+        public string Progreso { get; set; }
+
+        public int Cantidad { get; set; }
     }
 }
