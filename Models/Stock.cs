@@ -9,6 +9,7 @@ namespace LuzHogar.Models
         [Required]
         public int Cantidad { get; set; }
 
+        public Mueble Mueble { get; set; }
         [Required]
         public int MuebleId { get; set; }
     }
