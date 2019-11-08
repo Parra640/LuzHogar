@@ -11,6 +11,14 @@ namespace LuzHogar.Models
         public string Nombre{get; set;}
 
         [Required]
+        public string Username{get; set;}
+
+        [Required]
+        [Display(Name="Contraseña")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
         public string Direccion{get; set;}
 
         [Required]
@@ -23,6 +31,8 @@ namespace LuzHogar.Models
         public int Dni{get; set; }
 
         [Required]
+        [DataType(DataType.Email)]
+        [Display(Name="Correo Electrónico")]
         public string Email{get; set;}    
     }
 }
