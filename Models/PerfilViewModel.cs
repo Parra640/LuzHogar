@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace LuzHogar.Models
 {
@@ -27,6 +29,7 @@ namespace LuzHogar.Models
         public int Dni{get; set; }
 
         public List<Contrato> Contratos { get; set; }
-
+        
+        public List<Cliente> Cliente{get; set;}
     }
 }

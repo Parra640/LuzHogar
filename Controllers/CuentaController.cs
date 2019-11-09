@@ -1,18 +1,20 @@
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using LuzHogar.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace LuzHogar.Controllers
 {
-    public class CuentaController
+    public class CuentaController : Controller
     {
-        private PortalContext _context;
+        private LuzHogarContext _context;
         private SignInManager<IdentityUser> _sim;
         private UserManager<IdentityUser> _um;
         private RoleManager<IdentityRole> _rm;
         public CuentaController(
-            PortalContext c,  
+            LuzHogarContext c,  
             SignInManager<IdentityUser> s,
             UserManager<IdentityUser> um,
             RoleManager<IdentityRole> rm) {
@@ -121,15 +123,15 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
-        public IAsyncResult Perfil(int id)
+        public IActionResult Perfil(int id)
         {
             //se deberia pasar el usuario por parametro o por id
-            var contratos = _context.contratos.Include(x => x.Muebles)
+            var contratos = _context.Contratos.Include(x => x.Mueble)
                                    .Where(x => x.ClienteId == id)
                                    .ToList();
-            var cliente = _context.cliente.Where(x => x.Id == id);
+            var cliente = _context.Clientes.Where(x => x.Id == id).ToList();
 
-            var viewModel = new IndexViewModel();
+            var viewModel = new PerfilViewModel();
 
             viewModel.Contratos = contratos;
             viewModel.Cliente = cliente;

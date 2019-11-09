@@ -31,7 +31,6 @@ namespace LuzHogar.Models
         public int Dni{get; set; }
 
         [Required]
-        [DataType(DataType.Email)]
         [Display(Name="Correo Electrónico")]
         public string Email{get; set;}    
     }

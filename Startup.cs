@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LuzHogar.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,7 +38,7 @@ namespace LuzHogar
                 o => o.UseMySql("server=localhost;user=root;password=;database=LuzHogarDB;")
             );
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<PortalContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<LuzHogarContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
