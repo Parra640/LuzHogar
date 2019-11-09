@@ -5,6 +5,10 @@ namespace LuzHogar.Models
     public class CrearCuentaViewModel
     {
         [Required]
+        [Display(Name="Nombre")]
+        public string Nombre{get; set;}
+        
+        [Required]
         [EmailAddress]
         [Display(Name="Correo electrónico")]
         public string Correo { get; set; }
