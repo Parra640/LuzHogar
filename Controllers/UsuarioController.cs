@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LuzHogar.Controllers
 {
-    public class ClienteController : Controller
+    public class UsuarioController : Controller
     {
         private LuzHogarContext _context;
-        public ClienteController(LuzHogarContext c) {
+        public UsuarioController(LuzHogarContext c) {
             _context = c;
         }
         public IActionResult Index()
         {
-            var lista = _context.Clientes.ToList();
+            var lista = _context.Usuarios.ToList();
             return View(lista);
         }
         public IActionResult Registro()
@@ -22,7 +22,7 @@ namespace LuzHogar.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(Cliente x)
+        public IActionResult Registro(Usuario x)
         {
             if (ModelState.IsValid) {
                 _context.Add(x);

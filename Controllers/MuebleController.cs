@@ -12,7 +12,7 @@ namespace LuzHogar.Controllers
         }
         public IActionResult Index()
         {
-            var lista = _context.Clientes.ToList();
+            var lista = _context.Usuarios.ToList();
             return View(lista);
         }
         public IActionResult Registro()
@@ -22,7 +22,7 @@ namespace LuzHogar.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(Cliente x)
+        public IActionResult Registro(Usuario x)
         {
             if (ModelState.IsValid) {
                 _context.Add(x);

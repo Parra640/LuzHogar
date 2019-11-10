@@ -4,9 +4,9 @@ namespace LuzHogar.Models
     {
         public int Id { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public Usuario Usuario { get; set; }
 
-        public int ClienteId { get; set; }
+        public int UsuarioId { get; set; }
 
         public Mueble Mueble { get; set; }
 

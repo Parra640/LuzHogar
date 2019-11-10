@@ -38,7 +38,7 @@ namespace LuzHogar
                 o => o.UseMySql("server=localhost;user=root;password=;database=LuzHogarDB;")
             );
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<LuzHogarContext>();
+            services.AddIdentity<Usuario, IdentityRole>().AddEntityFrameworkStores<LuzHogarContext>();
 
             services.Configure<IdentityOptions>(options =>
             {

@@ -1,30 +1,31 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace LuzHogar.Models
 {
-    public class Cliente
+    public class Usuario : IdentityUser
     {
-        [Required]
-        public int Id{get; set;}
 
         [Required]
         public string Nombre{get; set;}
 
         [Required]
-        public string Username{get; set;}
+        [Display(Name="Apellido Paterno")]
+        public string ApePaterno{get; set;}
 
         [Required]
-        [Display(Name="Contraseña")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        [Display(Name="Apellido Materno")]
+        public string ApeMaterno{get; set;}
 
         [Required]
+        [Display(Name="Dirección")]
         public string Direccion{get; set;}
 
         [Required]
         public string Referencia{get; set;}
 
         [Required]
+        [Display(Name="Teléfono")]
         public int Telefono{get; set;}
 
         [Required]
@@ -32,6 +33,6 @@ namespace LuzHogar.Models
 
         [Required]
         [Display(Name="Correo Electrónico")]
-        public string Email{get; set;}    
+        public string Correo{get; set;}    
     }
 }

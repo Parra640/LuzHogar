@@ -7,11 +7,32 @@ namespace LuzHogar.Models
         [Required]
         [Display(Name="Nombre")]
         public string Nombre{get; set;}
-        
+
         [Required]
-        [EmailAddress]
-        [Display(Name="Correo electrónico")]
-        public string Correo { get; set; }
+        [Display(Name="Apellido Paterno")]
+        public string ApePaterno{get; set;}
+
+        [Required]
+        [Display(Name="Apellido Materno")]
+        public string ApeMaterno{get; set;}
+
+        [Required]
+        [Display(Name="Dirección")]
+        public string Direccion{get; set;}
+
+        [Required]
+        public string Referencia{get; set;}
+
+        [Required]
+        [Display(Name="Teléfono")]
+        public int Telefono{get; set;}
+
+        [Required]
+        public int Dni{get; set; }
+
+        [Required]
+        [Display(Name="Correo Electrónico")]
+        public string Correo{get; set;}    
 
         [Required]
         [Display(Name="Contraseña")]

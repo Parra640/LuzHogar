@@ -123,18 +123,20 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
-        public IActionResult Perfil(int id)
+        public IActionResult Perfil()
         {
-            //se deberia pasar el usuario por parametro o por id
+
+            var usuario = (Usuario)_um.GetUserAsync(this.User).Result;
             var contratos = _context.Contratos.Include(x => x.Mueble)
-                                   .Where(x => x.ClienteId == id)
+                                   .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
-            var cliente = _context.Clientes.Where(x => x.Id == id).ToList();
+            
+            //var usuario = _context.Usuarios.Where(x => x.Id == usuarioId).FirstOrDefaultAsync().Result;
 
             var viewModel = new PerfilViewModel();
-
+            
             viewModel.Contratos = contratos;
-            viewModel.Cliente = cliente;
+            //viewModel.Usuario = usuario;
 
             return View(viewModel);
         }
