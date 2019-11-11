@@ -21,8 +21,9 @@ namespace LuzHogar.Controllers
             return View(lista);
         }
 
+ 
         //este es pa los pedidos especiales o personalizados
-        [HttpGet("{id}")]
+        
         public IActionResult Mueble(int id)
         {
             var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();

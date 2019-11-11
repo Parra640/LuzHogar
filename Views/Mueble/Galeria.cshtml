@@ -7,6 +7,15 @@
 {
     <div>
         //info de cada mueble
-        
+        <div class="sm-4 center" >
+            <h3>@item.Nombre</h3>
+            <p>@item.Descripcion</p>
+            <img src="@item.Foto" width="600px">
+        </div>
+        <form method="GET" asp-controller="mueble" asp-action="mueble">
+            <input name="id" type="hidden" value="@item.Id">
+
+            <button class="btn btn-primary">Más info</button>
+        </form>
     </div>
 }
