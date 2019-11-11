@@ -25,7 +25,8 @@ namespace LuzHogar.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            return View(x);
+            return View("Index","Home");
+            
         }
 
         [Authorize]

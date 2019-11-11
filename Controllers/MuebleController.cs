@@ -2,14 +2,17 @@ using System.Linq;
 using LuzHogar.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace LuzHogar.Controllers
 {
     public class MuebleController : Controller
     {
         private LuzHogarContext _context;
-        public MuebleController(LuzHogarContext c)
+        private UserManager<IdentityUser> _um;
+        public MuebleController(LuzHogarContext c, UserManager<IdentityUser> um)
         {
+            _um = um;
             _context = c;
         }
         public IActionResult Galeria()

@@ -27,7 +27,7 @@ namespace LuzHogar.Controllers
             _rm = rm;
         }
 
-        [Authorize(Roles="admin")]
+        //[Authorize(Roles="admin")]
         public IActionResult AsociarRol()
         {
             ViewBag.Usuarios = _um.Users.ToList();
@@ -36,7 +36,7 @@ namespace LuzHogar.Controllers
             return View();
         }
 
-        [Authorize(Roles="admin")]
+        //[Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult AsociarRol(string usuario, string rol)
         {
@@ -47,13 +47,13 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
-        [Authorize(Roles="admin")]
+        //[Authorize(Roles="admin")]
         public IActionResult CrearRol()
         {
             return View();
         }
 
-        [Authorize(Roles="admin")]
+        //[Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult CrearRol(string nombre)
         {
