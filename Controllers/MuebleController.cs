@@ -23,6 +23,7 @@ namespace LuzHogar.Controllers
         public IActionResult Mueble(int id)
         {
             var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
+            
             return View(mueble);
         }
 

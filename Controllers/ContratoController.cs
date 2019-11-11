@@ -9,13 +9,17 @@ namespace LuzHogar.Controllers
     public class ContratoController : Controller
     {
         private LuzHogarContext _context;
-        public ContratoController(LuzHogarContext c) {
+        public ContratoController(LuzHogarContext c)
+        {
             _context = c;
         }
 
         [Authorize]
-        public IActionResult RegistrarContrato()
+        [HttpPost]
+        public IActionResult RegistrarContrato(Mueble x)
         {
+            //var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
+            ViewBag.Mueble = x;
             return View();
         }
 
@@ -23,14 +27,15 @@ namespace LuzHogar.Controllers
         [HttpPost]
         public IActionResult RegistrarContrato(Contrato x)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 _context.Add(x);
                 _context.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return View(x);
         }
-        
+
         [Authorize]
         public IActionResult RegistrarPedidoEspecial()
         {
@@ -41,10 +46,11 @@ namespace LuzHogar.Controllers
         [HttpPost]
         public IActionResult RegistrarPedidoEspecial(PedidoEspecial x)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 _context.Add(x);
                 _context.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return View(x);
         }
