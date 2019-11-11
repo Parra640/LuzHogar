@@ -16,7 +16,7 @@ namespace LuzHogar.Controllers
         }
 
 
-        public IActionResult Privacy()
+         public IActionResult Nosotros()
         {
             return View();
         }
