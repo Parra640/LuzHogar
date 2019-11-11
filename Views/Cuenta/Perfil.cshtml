@@ -1,9 +1,55 @@
 @model PerfilViewModel
 
-<h1>Perfil del usuario @Model.Usuario.Nombre </h1>
+<h1>Información del Usuario</h1>
 
-<div>Nombre:</div>
-<div>@Model.Usuario.Nombre</div>
+<div>
+    <p>Nombre:</p>
+    <p>@Model.Contratos[0].Usuario.Nombre </p>   
+</div>
 
-<div>Apellido Paterno:</div>
-<div>@Model.Usuario.Nombre</div>
+<div>
+    <p>Apellido Paterno:</p>
+    <p>@Model.Contratos[0].Usuario.ApePaterno </p>
+</div>
+<div>
+    <p>Apellido Paterno:</p>
+    <p>@Model.Contratos[0].Usuario.ApeMaterno </p>
+</div>
+<div>
+    <p>Correo Electrónico:</p>
+    <p>@Model.Contratos[0].Usuario.Correo </p>
+</div>
+<div>
+    <p>Dirección:</p>
+    <p>@Model.Contratos[0].Usuario.Direccion </p>
+</div>
+<div>
+    <p>Referencia:</p>
+    <p>@Model.Contratos[0].Usuario.Referencia </p>
+</div>
+
+<h1>Contratos del cliente</h1>
+<Table>
+    <tr>
+        <th>Nombre Mueble</th>
+        <th>Descripción</th>
+        <th>Color</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Foto</th>
+    </tr>
+@foreach (var item in @Model.Contratos)
+{
+    <tr>
+        <td>@item.Mueble.Nombre</td>
+        <td>@item.Mueble.Descripcion</td>
+        <td>@item.Mueble.Color</td>
+        <td>@item.Mueble.Precio</td>
+        <td>@item.Cantidad</td>
+        <td>@(item.Cantidad * item.Mueble.Precio)</td>
+        <td>@item.Mueble.Foto</td>
+
+    </tr>
+}
+</Table>

@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using LuzHogar.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuzHogar.Controllers
 {
@@ -14,10 +15,11 @@ namespace LuzHogar.Controllers
         private UserManager<IdentityUser> _um;
         private RoleManager<IdentityRole> _rm;
         public CuentaController(
-            LuzHogarContext c,  
+            LuzHogarContext c,
             SignInManager<IdentityUser> s,
             UserManager<IdentityUser> um,
-            RoleManager<IdentityRole> rm) {
+            RoleManager<IdentityRole> rm)
+        {
 
             _context = c;
             _sim = s;
@@ -25,6 +27,7 @@ namespace LuzHogar.Controllers
             _rm = rm;
         }
 
+        [Authorize(Roles="admin")]
         public IActionResult AsociarRol()
         {
             ViewBag.Usuarios = _um.Users.ToList();
@@ -33,8 +36,10 @@ namespace LuzHogar.Controllers
             return View();
         }
 
+        [Authorize(Roles="admin")]
         [HttpPost]
-        public IActionResult AsociarRol(string usuario, string rol) {
+        public IActionResult AsociarRol(string usuario, string rol)
+        {
             var user = _um.FindByIdAsync(usuario).Result;
 
             var resultado = _um.AddToRoleAsync(user, rol).Result;
@@ -42,11 +47,13 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
+        [Authorize(Roles="admin")]
         public IActionResult CrearRol()
         {
             return View();
         }
 
+        [Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult CrearRol(string nombre)
         {
@@ -58,17 +65,21 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
-        public IActionResult Crear() {
+        public IActionResult Crear()
+        {
             return View();
         }
 
-        public IActionResult AccesoDenegado() {
+        public IActionResult AccesoDenegado()
+        {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Crear(CrearCuentaViewModel model) {
-            if (ModelState.IsValid) {
+        public IActionResult Crear(CrearCuentaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
                 // Guardar datos del modelo en la tabla usuarios
                 var usuario = new IdentityUser();
                 usuario.UserName = model.Correo;
@@ -78,63 +89,71 @@ namespace LuzHogar.Controllers
                 var r = _um.AddToRoleAsync(usuario, "Usuario").Result;
 
 
-                if (resultado.Succeeded) {
+                if (resultado.Succeeded)
+                {
                     return RedirectToAction("index", "home");
                 }
-                else {
+                else
+                {
                     foreach (var item in resultado.Errors)
                     {
                         ModelState.AddModelError("", item.Description);
                     }
-                }                
+                }
             }
 
             return View(model);
         }
 
-        public IActionResult Login() {
+        public IActionResult Login()
+        {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model) {
+        public IActionResult Login(LoginViewModel model)
+        {
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
-             
+
                 var resultado = _sim.PasswordSignInAsync(model.Correo, model.Password, true, false).Result;
 
-                if (resultado.Succeeded) {
+                if (resultado.Succeeded)
+                {
 
                     return RedirectToAction("index", "home");
                 }
-                else {
-                    
+                else
+                {
+
                     ModelState.AddModelError("", "Datos incorrectos");
                 }
-            }        
+            }
 
             return View(model);
         }
 
-        public IActionResult Logout() {
+        public IActionResult Logout()
+        {
             _sim.SignOutAsync();
 
             return RedirectToAction("index", "home");
         }
 
+        [Authorize]
         public IActionResult Perfil()
         {
-
             var usuario = (Usuario)_um.GetUserAsync(this.User).Result;
-            var contratos = _context.Contratos.Include(x => x.Mueble)
+            var contratos = _context.Contratos.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
             
             //var usuario = _context.Usuarios.Where(x => x.Id == usuarioId).FirstOrDefaultAsync().Result;
 
             var viewModel = new PerfilViewModel();
-            
+
             viewModel.Contratos = contratos;
             //viewModel.Usuario = usuario;
 

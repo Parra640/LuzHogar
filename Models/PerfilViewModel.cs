@@ -9,6 +9,6 @@ namespace LuzHogar.Models
 
         public List<Contrato> Contratos { get; set; }
 
-        public Usuario Usuario { get; set; }
+        //public Usuario Usuario { get; set; }
     }
 }
