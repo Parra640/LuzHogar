@@ -152,7 +152,6 @@ namespace LuzHogar.Controllers
             var pedidos = _context.PedidosEspeciales.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
-            //var usuario = _context.Usuarios.Where(x => x.Id == usuarioId).FirstOrDefaultAsync().Result;
 
             var viewModel = new PerfilViewModel();
 

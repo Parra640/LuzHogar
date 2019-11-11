@@ -1,0 +1,54 @@
+@model Mueble
+
+<h1>@Model.Name</h1>
+
+<form asp-controller="Contrato" asp-action="RegistrarContrato" method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Mueble" class="form-control" type="hidden" value="@Model">
+    <input asp-for="MuebleId" class="form-control" type="hidden" value="@Model.Id">
+    <input asp-for="Mueble" class="form-control" type="hidden" value="@ViewBag.Usuario">
+    <input asp-for="MuebleId" class="form-control" type="hidden" value="@ViewBag.Usuario.Id">
+    <div class="form-group">
+        <label asp-for="Cantidad">Cantidad</label>
+        <input asp-for="Cantidad" class="form-control" value="1">
+    </div>
+    
+    <h2>Pago Con Tarjeta</h2>
+
+    <div class="form-group">
+        <label>Nombre completo</label>
+        <input class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Numero de tarjeta de crédito</label>
+        <input class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Mes de Vencimiento</label>
+        <select>
+            <option>Enero</option>
+            <option>Febrero</option>
+            <option>Marzo</option>
+            <option>Abril</option>
+            <option>Mayo</option>
+            <option>Junio</option>
+            <option>Julio</option>
+            <option>Agosto</option>
+            <option>Setiembre</option>
+            <option>Octubre</option>
+            <option>Noviembre</option>
+            <option>Diciembre</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Año de Vencimiento</label>
+        <input class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Código de Seguridad</label>
+        <input class="form-control">
+    </div>
+    <button class="btn btn-primary">Realizar Contrato</button>
+</form>

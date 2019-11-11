@@ -23,6 +23,9 @@ namespace LuzHogar.Controllers
         public IActionResult Mueble(int id)
         {
             var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
+            var usuario=(Usuario)_um.GetUserAsync(this.User).Result;
+
+            ViewBag.Usuario=usuario;
             
             return View(mueble);
         }

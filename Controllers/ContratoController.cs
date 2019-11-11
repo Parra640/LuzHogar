@@ -14,14 +14,6 @@ namespace LuzHogar.Controllers
             _context = c;
         }
 
-        [Authorize]
-        [HttpPost]
-        public IActionResult RegistrarContrato(Mueble x)
-        {
-            //var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
-            ViewBag.Mueble = x;
-            return View();
-        }
 
         [Authorize]
         [HttpPost]
