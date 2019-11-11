@@ -4,13 +4,13 @@
 
 <form asp-controller="Contrato" asp-action="RegistrarContrato" method="post">
     <div asp-validation-summary="All"></div>
-    <input asp-for="Mueble" class="form-control" type="hidden" value="@Model">
-    <input asp-for="MuebleId" class="form-control" type="hidden" value="@Model.Id">
-    <input asp-for="Mueble" class="form-control" type="hidden" value="@ViewBag.Usuario">
-    <input asp-for="MuebleId" class="form-control" type="hidden" value="@ViewBag.Usuario.Id">
+    <input class="form-control" type="hidden" value="@Model">
+    <input class="form-control" type="hidden" value="@Model.Id">
+    <input  class="form-control" type="hidden" value="@ViewBag.Usuario">
+    <input  class="form-control" type="hidden" value="@ViewBag.Usuario.Id">
     <div class="form-group">
-        <label asp-for="Cantidad">Cantidad</label>
-        <input asp-for="Cantidad" class="form-control" value="1">
+        <label >Cantidad</label>
+        <input  class="form-control" value="1">
     </div>
     
     <h2>Pago Con Tarjeta</h2>
