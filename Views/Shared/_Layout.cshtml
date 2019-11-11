@@ -32,12 +32,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Ver</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Mueble" asp-action="Index">Ver Muebles</a>
                         </li>
 
                         @if (!User.Identity.IsAuthenticated) {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="~/cuenta/crear">Crear cuenta</a>
+                                <a class="nav-link text-dark" asp-controller="Cuenta" asp-action="Crear">Crear cuenta</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/login">Iniciar sesión</a>

@@ -12,25 +12,16 @@ namespace LuzHogar.Controllers
         }
         public IActionResult Index()
         {
-            var lista = _context.Usuarios.ToList();
+            var lista = _context.Muebles.ToList();
             return View(lista);
         }
-        public IActionResult Registro()
+
+        //este es pa los pedidos especiales o personalizados
+        public IActionResult Pedido()
         {
-            ViewBag.Contratos = _context.Contratos.ToList();
+            
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Registro(Usuario x)
-        {
-            if (ModelState.IsValid) {
-                _context.Add(x);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Contratos = _context.Contratos.ToList();
-            return View(x);
-        }   
     }
 }
