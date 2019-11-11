@@ -1,6 +1,7 @@
 
 using System.Linq;
 using LuzHogar.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LuzHogar.Controllers
@@ -11,23 +12,39 @@ namespace LuzHogar.Controllers
         public ContratoController(LuzHogarContext c) {
             _context = c;
         }
-        public IActionResult Index()
-        {
-            var lista = _context.Contratos.ToList();
-            return View(lista);
-        }
-        public IActionResult Registro()
+
+        [Authorize]
+        public IActionResult RegistrarContrato()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Registro(Contrato x)
+        public IActionResult RegistrarContrato(Contrato x)
         {
             if (ModelState.IsValid) {
                 _context.Add(x);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
+            }
+            return View(x);
+        }
+        
+        [Authorize]
+        public IActionResult RegistrarPedidoEspecial()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult RegistrarPedidoEspecial(PedidoEspecial x)
+        {
+            if (ModelState.IsValid) {
+                _context.Add(x);
+                _context.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
             return View(x);
         }

@@ -9,6 +9,7 @@ namespace LuzHogar.Models
 
         public DbSet<Mueble> Muebles { get; set; }
         public DbSet<Contrato> Contratos { get; set; }
+        public DbSet<PedidoEspecial> PedidosEspeciales { get; set; }
 
         public LuzHogarContext(DbContextOptions<LuzHogarContext> o) : base(o) { }
     }

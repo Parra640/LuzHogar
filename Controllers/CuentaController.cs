@@ -149,13 +149,15 @@ namespace LuzHogar.Controllers
             var contratos = _context.Contratos.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
-            
+            var pedidos = _context.PedidosEspeciales.Include(x => x.Usuario)
+                                   .Where(x => x.UsuarioId == int.Parse(usuario.Id))
+                                   .ToList();
             //var usuario = _context.Usuarios.Where(x => x.Id == usuarioId).FirstOrDefaultAsync().Result;
 
             var viewModel = new PerfilViewModel();
 
             viewModel.Contratos = contratos;
-            //viewModel.Usuario = usuario;
+            viewModel.PedidosEspeciales= pedidos;
 
             return View(viewModel);
         }

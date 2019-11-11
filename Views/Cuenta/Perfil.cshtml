@@ -53,3 +53,29 @@
     </tr>
 }
 </Table>
+
+<h1>Pedidos Especiales del cliente</h1>
+<Table>
+    <tr>
+        <th>Nombre Mueble</th>
+        <th>Descripción</th>
+        <th>Color</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Foto</th>
+    </tr>
+@foreach (var item in Model.PedidosEspeciales)
+{
+    <tr>
+        <td>@item.Nombre</td>
+        <td>@item.Descripcion</td>
+        <td>@item.Color</td>
+        <td>@item.Precio</td>
+        <td>@item.Cantidad</td>
+        <td>@(item.Cantidad * item.Precio)</td>
+        <td>@item.Foto</td>
+
+    </tr>
+}
+</Table>
