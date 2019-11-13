@@ -8,14 +8,18 @@
     <div>
         //info de cada mueble
         <div class="sm-4 center" >
+            <img src="@item.Foto" width="100px">
             <h3>@item.Nombre</h3>
             <p>@item.Descripcion</p>
-            <img src="@item.Foto" width="600px">
+            <p><a href="~/mueble/mueble?id=@item.Id">Mas Info</a></p>
         </div>
+
+        /*
         <form method="get" asp-controller="mueble" asp-action="mueble">
             <input name="id" type="hidden" value="@item.Id">
 
             <button class="btn btn-primary">Más info</button>
         </form>
+        */
     </div>
 }

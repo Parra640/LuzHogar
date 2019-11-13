@@ -21,18 +21,40 @@ namespace LuzHogar.Controllers
             return View(lista);
         }
 
- 
+
         //este es pa los pedidos especiales o personalizados
-        
+
         public IActionResult Mueble(int id)
         {
             var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
-            var usuario=_um.GetUserAsync(this.User).Result;
+            var usuario = _um.GetUserAsync(this.User).Result;
 
-            ViewBag.Usuario=usuario;
-            
+            ViewBag.Usuario = usuario;
+
             return View(mueble);
         }
 
+        //[Authorize(Roles="admin")]
+        public IActionResult AgregarMueble()
+        {
+            return View();
+        }
+
+
+        //[Authorize(Roles="admin")]
+        [HttpPost]
+        public IActionResult AgregarMueble(Mueble x)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(x);
+                _context.SaveChanges();
+                return RedirectToAction("AgregarMueble");
+            }
+            return View("Index", "Home");
+        }
+
     }
+
+
 }

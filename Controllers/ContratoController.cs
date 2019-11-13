@@ -14,6 +14,16 @@ namespace LuzHogar.Controllers
             _context = c;
         }
 
+        [Authorize]
+        public IActionResult RegistrarContrato(int id, int cant)
+        {
+            Contrato x= new Contrato();
+            x.MuebleId=id;
+            x.Mueble=_context.Muebles.Where(m => m.Id==id).FirstOrDefault();
+            x.Cantidad=cant;
+            return View(x);
+            
+        }
 
         [Authorize]
         [HttpPost]
