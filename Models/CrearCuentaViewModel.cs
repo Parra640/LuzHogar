@@ -25,10 +25,10 @@ namespace LuzHogar.Models
 
         [Required]
         [Display(Name="Teléfono")]
-        public int Telefono{get; set;}
+        public string Telefono{get; set;}
 
         [Required]
-        public int Dni{get; set; }
+        public string Dni{get; set; }
 
         [Required]
         [Display(Name="Correo Electrónico")]

@@ -82,12 +82,17 @@ namespace LuzHogar.Controllers
             {
                 // Guardar datos del modelo en la tabla usuarios
                 var usuario = new Usuario();
-                usuario.UserName = model.Correo;
-                usuario.Email = model.Correo;
+                usuario.Nombre=model.Nombre;
+                usuario.ApePaterno=model.ApePaterno;
+                usuario.ApeMaterno=model.ApeMaterno;
+                usuario.Direccion=model.Direccion;
+                usuario.Referencia=model.Referencia;
+                usuario.Telefono=model.Telefono;
+                usuario.Dni=model.Dni;
+                usuario.Correo = model.Correo;
 
                 IdentityResult resultado = _um.CreateAsync(usuario, model.Password1).Result;
-                var r = _um.AddToRoleAsync(usuario, "Usuario").Result;
-
+                var r = _um.AddToRoleAsync(usuario, "usuario").Result;
 
                 if (resultado.Succeeded)
                 {
