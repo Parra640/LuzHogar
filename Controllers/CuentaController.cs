@@ -11,13 +11,13 @@ namespace LuzHogar.Controllers
     public class CuentaController : Controller
     {
         private LuzHogarContext _context;
-        private SignInManager<IdentityUser> _sim;
-        private UserManager<IdentityUser> _um;
+        private SignInManager<Usuario> _sim;
+        private UserManager<Usuario> _um;
         private RoleManager<IdentityRole> _rm;
         public CuentaController(
             LuzHogarContext c,
-            SignInManager<IdentityUser> s,
-            UserManager<IdentityUser> um,
+            SignInManager<Usuario> s,
+            UserManager<Usuario> um,
             RoleManager<IdentityRole> rm)
         {
 
@@ -81,7 +81,7 @@ namespace LuzHogar.Controllers
             if (ModelState.IsValid)
             {
                 // Guardar datos del modelo en la tabla usuarios
-                var usuario = new IdentityUser();
+                var usuario = new Usuario();
                 usuario.UserName = model.Correo;
                 usuario.Email = model.Correo;
 
@@ -145,7 +145,7 @@ namespace LuzHogar.Controllers
         [Authorize]
         public IActionResult Perfil()
         {
-            var usuario = (Usuario)_um.GetUserAsync(this.User).Result;
+            var usuario = _um.GetUserAsync(this.User).Result;
             var contratos = _context.Contratos.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
