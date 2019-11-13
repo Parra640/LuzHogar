@@ -82,6 +82,7 @@ namespace LuzHogar.Controllers
             {
                 // Guardar datos del modelo en la tabla usuarios
                 var usuario = new Usuario();
+                usuario.UserName=model.Correo;
                 usuario.Nombre=model.Nombre;
                 usuario.ApePaterno=model.ApePaterno;
                 usuario.ApeMaterno=model.ApeMaterno;

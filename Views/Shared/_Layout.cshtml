@@ -54,14 +54,17 @@
                                 <a class="nav-link text-dark" href="~/cuenta/perfil">Perfil</a>
                             </li>
                             
-                            @if(User.IsInRole("admin")){
+                       if(User.IsInRole("admin")){
+
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/crearrol">Crear Rol</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/asociarrol">Asociar Rol</a>
                             </li>
-                            }
+                         
+                       }
                             
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/logout">Cerrar sesión</a>
