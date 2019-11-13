@@ -11,15 +11,8 @@
             <img src="@item.Foto" width="100px">
             <h3>@item.Nombre</h3>
             <p>@item.Descripcion</p>
-            <p><a href="~/mueble/mueble?id=@item.Id">Mas Info</a></p>
+            <a class="btn btn-primary" href="~/mueble/mueble?id=@item.Id">Mas Info</a>
         </div>
 
-        /*
-        <form method="get" asp-controller="mueble" asp-action="mueble">
-            <input name="id" type="hidden" value="@item.Id">
-
-            <button class="btn btn-primary">Más info</button>
-        </form>
-        */
     </div>
 }

@@ -1,8 +1,8 @@
 using System.Linq;
 using LuzHogar.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuzHogar.Controllers
 {
@@ -34,14 +34,14 @@ namespace LuzHogar.Controllers
             return View(mueble);
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         public IActionResult AgregarMueble()
         {
             return View();
         }
 
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult AgregarMueble(Mueble x)
         {
