@@ -7,32 +7,32 @@ namespace LuzHogar.Models
     {
 
         [Required]
-        public string Nombre{get; set;}
+        public string Nombre { get; set; }
 
         [Required]
-        [Display(Name="Apellido Paterno")]
-        public string ApePaterno{get; set;}
+        [Display(Name = "Apellido Paterno")]
+        public string ApePaterno { get; set; }
 
         [Required]
-        [Display(Name="Apellido Materno")]
-        public string ApeMaterno{get; set;}
+        [Display(Name = "Apellido Materno")]
+        public string ApeMaterno { get; set; }
 
         [Required]
-        [Display(Name="Dirección")]
-        public string Direccion{get; set;}
+        [Display(Name = "Dirección")]
+        public string Direccion { get; set; }
 
         [Required]
-        public string Referencia{get; set;}
+        public string Referencia { get; set; }
 
         [Required]
-        [Display(Name="Teléfono")]
-        public int Telefono{get; set;}
+        [Display(Name = "Teléfono")]
+        public string Telefono { get; set; }
 
         [Required]
-        public int Dni{get; set; }
+        public string Dni { get; set; }
 
         [Required]
-        [Display(Name="Correo Electrónico")]
-        public string Correo{get; set;}    
+        [Display(Name = "Correo Electrónico")]
+        public string Correo { get; set; }
     }
 }

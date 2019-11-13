@@ -1,14 +1,13 @@
 
-
 namespace LuzHogar.Models
 {
     public class Mueble
     {
 
         public int Id { get; set; }
-        
+
         public string Nombre { get; set; }
-        
+
         public string Color { get; set; }
 
         public string Descripcion { get; set; }
@@ -19,6 +18,6 @@ namespace LuzHogar.Models
 
         public string Foto { get; set; }
 
-        
+
     }
 }

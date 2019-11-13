@@ -3,14 +3,16 @@ using System;
 using LuzHogar.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LuzHogar.Migrations
 {
     [DbContext(typeof(LuzHogarContext))]
-    partial class LuzHogarContextModelSnapshot : ModelSnapshot
+    [Migration("20191113052742_ModificandoUsuario")]
+    partial class ModificandoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
