@@ -39,8 +39,8 @@
                         </li>
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Nosotros">Nosotros</a>
-                        </li>
-
+                        </li>   
+                        
                         @if (!User.Identity.IsAuthenticated) {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Cuenta" asp-action="Crear">Crear cuenta</a>
@@ -59,13 +59,13 @@
                                 <a class="nav-link text-dark" asp-controller="Mueble" 
                                 asp-action="AgregarMueble">Agregar Mueble</a>
                             </li>
-
-                            <li class="nav-item">
+                         <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/crearrol">Crear Rol</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="~/cuenta/asociarrol">Asociar Rol</a>
                             </li>
+                           
                          
                        }
                             
