@@ -16,6 +16,8 @@ namespace LuzHogar.Models
 
         public int Cantidad { get; set; }
 
+        public string Estado { get; set; }
+
         [Display(Name="Link de Foto Referencial")]
         public string Foto { get; set; }
 

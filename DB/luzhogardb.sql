@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2019 a las 22:45:29
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.10
+-- Tiempo de generación: 16-11-2019 a las 23:52:59
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,7 @@ CREATE TABLE `aspnetroleclaims` (
   `RoleId` varchar(255) NOT NULL,
   `ClaimType` longtext DEFAULT NULL,
   `ClaimValue` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -46,15 +46,15 @@ CREATE TABLE `aspnetroles` (
   `Name` varchar(256) DEFAULT NULL,
   `NormalizedName` varchar(256) DEFAULT NULL,
   `ConcurrencyStamp` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `aspnetroles`
 --
 
 INSERT INTO `aspnetroles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) VALUES
-('20512fc4-14dd-4bf6-b860-eded0eef6b01', 'usuario', 'USUARIO', '03f83196-4e9a-4a33-9ec5-33a322a5da7b'),
-('6eddf940-50a2-41d8-8078-357b6c13ebe7', 'admin', 'ADMIN', '083f66c3-ed93-4963-a19d-b461cc7de23a');
+('16a192bd-4d3f-44fa-a755-e74fa285a9e5', 'admin', 'ADMIN', '507a1e37-97c1-4bda-a8a0-cb2983af7c39'),
+('19513f7c-f3c1-4c6a-ab04-5fa619963478', 'usuario', 'USUARIO', '1868dac0-8246-4dca-9bb9-0464a9a66055');
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE `aspnetuserclaims` (
   `UserId` varchar(255) NOT NULL,
   `ClaimType` longtext DEFAULT NULL,
   `ClaimValue` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,7 @@ CREATE TABLE `aspnetuserlogins` (
   `ProviderKey` varchar(255) NOT NULL,
   `ProviderDisplayName` longtext DEFAULT NULL,
   `UserId` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -91,14 +91,16 @@ CREATE TABLE `aspnetuserlogins` (
 CREATE TABLE `aspnetuserroles` (
   `UserId` varchar(255) NOT NULL,
   `RoleId` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `aspnetuserroles`
 --
 
 INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
-('f03c77bc-a505-4150-89c9-1dd9813fb7ff', '20512fc4-14dd-4bf6-b860-eded0eef6b01');
+('bd33c6b2-b8b7-46ed-8919-02cb00491e2c', '19513f7c-f3c1-4c6a-ab04-5fa619963478'),
+('c74c0aaf-db49-4c3e-9e9e-140745d35431', '16a192bd-4d3f-44fa-a755-e74fa285a9e5'),
+('c74c0aaf-db49-4c3e-9e9e-140745d35431', '19513f7c-f3c1-4c6a-ab04-5fa619963478');
 
 -- --------------------------------------------------------
 
@@ -131,14 +133,15 @@ CREATE TABLE `aspnetusers` (
   `Telefono` longtext DEFAULT NULL,
   `Dni` longtext DEFAULT NULL,
   `Correo` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `aspnetusers`
 --
 
 INSERT INTO `aspnetusers` (`Id`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`, `Discriminator`, `Nombre`, `ApePaterno`, `ApeMaterno`, `Direccion`, `Referencia`, `Telefono`, `Dni`, `Correo`) VALUES
-('f03c77bc-a505-4150-89c9-1dd9813fb7ff', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEJBSHaUlDstyJptHI66Y+FyPJlcSrL8dK0yti3Kh8Bm/BKphDSzf1nFKsjaHTX2kOA==', 'JTDFETWWC7SCKR3NVKELES43PWKGB3R7', 'ba84b2cc-b82e-4f49-aa71-4d2441eccbab', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'Adela', 'Otayza', 'Grados', 'kaskam', 'kskm', 'dd', 'jjjjjj', 'admin@hotmail.com');
+('bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'daddygianko@gmail.com', 'DADDYGIANKO@GMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEIZrG68W7HXzEC6turlGAVHdY+ke5q0qXcmR6ytvWowf4p7V8PJkBf2YcscuD7IoHA==', '4DVECM4YXU7GDHBBIUCWNULZN4LY4J4R', 'b4a4c784-9dd4-4398-8a10-41913030160a', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'gianko', 'mello', 'loayza', '6tugy', '6tyg', '76867', '7679', 'daddygianko@gmail.com'),
+('c74c0aaf-db49-4c3e-9e9e-140745d35431', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEGD38k37lUfce6RNnfpO3p405gUk7ePr9ErH8GbspnZ8QsvdJrwHk/8w0biS72p0jA==', 'FKG4E4RKXILJNFXPC735VOE2OXWAX35T', '53586a0d-204f-4003-a57b-3c70d4379948', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'hola', 'a', 'todos', '6ut7yh', 'u7yiuhj', '234587', '67876', 'admin@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,7 @@ CREATE TABLE `aspnetusertokens` (
   `LoginProvider` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Value` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -166,7 +169,7 @@ CREATE TABLE `contratos` (
   `Progreso` longtext DEFAULT NULL,
   `Cantidad` int(11) NOT NULL,
   `UsuarioId1` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,7 @@ CREATE TABLE `muebles` (
   `Precio` float NOT NULL,
   `Stock` int(11) NOT NULL,
   `Foto` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -199,8 +202,9 @@ CREATE TABLE `pedidosespeciales` (
   `Cantidad` int(11) NOT NULL,
   `Foto` longtext DEFAULT NULL,
   `UsuarioId1` varchar(255) DEFAULT NULL,
-  `UsuarioId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `UsuarioId` int(11) NOT NULL,
+  `Estado` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -211,7 +215,7 @@ CREATE TABLE `pedidosespeciales` (
 CREATE TABLE `__efmigrationshistory` (
   `MigrationId` varchar(95) NOT NULL,
   `ProductVersion` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `__efmigrationshistory`
@@ -221,7 +225,8 @@ INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
 ('20191109213228_BDInicial', '2.2.6-servicing-10079'),
 ('20191113051909_agregandoTablas', '2.2.6-servicing-10079'),
 ('20191113052742_ModificandoUsuario', '2.2.6-servicing-10079'),
-('20191113192940_creacionadmi', '2.2.6-servicing-10079');
+('20191113192940_creacionadmi', '2.2.6-servicing-10079'),
+('20191116223629_cambioEnPedidoEspecial', '2.2.6-servicing-10079');
 
 --
 -- Índices para tablas volcadas
