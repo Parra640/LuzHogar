@@ -1,81 +1,34 @@
-@model PerfilViewModel
+
+@model Usuario
 
 <h1>Información del Usuario</h1>
 
 <div>
     <p>Nombre:</p>
-    <p>@Model.Contratos[0].Usuario.Nombre </p>   
+    <p>@Model.Nombre </p>   
 </div>
 
 <div>
     <p>Apellido Paterno:</p>
-    <p>@Model.Contratos[0].Usuario.ApePaterno </p>
+    <p>@Model.ApePaterno </p>
 </div>
 <div>
     <p>Apellido Paterno:</p>
-    <p>@Model.Contratos[0].Usuario.ApeMaterno </p>
+    <p>@Model.ApeMaterno </p>
 </div>
 <div>
     <p>Correo Electrónico:</p>
-    <p>@Model.Contratos[0].Usuario.Correo </p>
+    <p>@Model.Correo </p>
 </div>
 <div>
     <p>Dirección:</p>
-    <p>@Model.Contratos[0].Usuario.Direccion </p>
+    <p>@Model.Direccion </p>
 </div>
 <div>
     <p>Referencia:</p>
-    <p>@Model.Contratos[0].Usuario.Referencia </p>
+    <p>@Model.Referencia </p>
 </div>
-
-<h1>Contratos del cliente</h1>
-<Table>
-    <tr>
-        <th>Nombre Mueble</th>
-        <th>Descripción</th>
-        <th>Color</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Total</th>
-        <th>Foto</th>
-    </tr>
-@foreach (var item in Model.Contratos)
-{
-    <tr>
-        <td>@item.Mueble.Nombre</td>
-        <td>@item.Mueble.Descripcion</td>
-        <td>@item.Mueble.Color</td>
-        <td>@item.Mueble.Precio</td>
-        <td>@item.Cantidad</td>
-        <td>@(item.Cantidad * item.Mueble.Precio)</td>
-        <td>@item.Mueble.Foto</td>
-
-    </tr>
-}
-</Table>
-
-<h1>Pedidos Especiales del cliente</h1>
-<Table>
-    <tr>
-        <th>Nombre Mueble</th>
-        <th>Descripción</th>
-        <th>Color</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Total</th>
-        <th>Foto</th>
-    </tr>
-@foreach (var item in Model.PedidosEspeciales)
-{
-    <tr>
-        <td>@item.Nombre</td>
-        <td>@item.Descripcion</td>
-        <td>@item.Color</td>
-        <td>@item.Precio</td>
-        <td>@item.Cantidad</td>
-        <td>@(item.Cantidad * item.Precio)</td>
-        <td>@item.Foto</td>
-
-    </tr>
-}
-</Table>
+<div class="form-group">
+        <label asp-for="Nombre">Nombre:</label>
+        <input asp-for="Nombre" class="form-control">
+    </div>

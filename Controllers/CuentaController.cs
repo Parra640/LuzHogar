@@ -82,14 +82,14 @@ namespace LuzHogar.Controllers
             {
                 // Guardar datos del modelo en la tabla usuarios
                 var usuario = new Usuario();
-                usuario.UserName=model.Correo;
-                usuario.Nombre=model.Nombre;
-                usuario.ApePaterno=model.ApePaterno;
-                usuario.ApeMaterno=model.ApeMaterno;
-                usuario.Direccion=model.Direccion;
-                usuario.Referencia=model.Referencia;
-                usuario.Telefono=model.Telefono;
-                usuario.Dni=model.Dni;
+                usuario.UserName = model.Correo;
+                usuario.Nombre = model.Nombre;
+                usuario.ApePaterno = model.ApePaterno;
+                usuario.ApeMaterno = model.ApeMaterno;
+                usuario.Direccion = model.Direccion;
+                usuario.Referencia = model.Referencia;
+                usuario.Telefono = model.Telefono;
+                usuario.Dni = model.Dni;
                 usuario.Correo = model.Correo;
 
                 IdentityResult resultado = _um.CreateAsync(usuario, model.Password1).Result;
@@ -159,12 +159,7 @@ namespace LuzHogar.Controllers
                                    .Where(x => x.UsuarioId == int.Parse(usuario.Id))
                                    .ToList();
 
-            var viewModel = new PerfilViewModel();
-
-            viewModel.Contratos = contratos;
-            viewModel.PedidosEspeciales= pedidos;
-
-            return View(viewModel);
+            return View(usuario);
         }
     }
 }
