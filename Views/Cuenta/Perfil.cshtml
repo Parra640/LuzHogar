@@ -3,32 +3,53 @@
 
 <h1>Información del Usuario</h1>
 
-<div>
-    <p>Nombre:</p>
-    <p>@Model.Nombre </p>   
-</div>
 
-<div>
-    <p>Apellido Paterno:</p>
-    <p>@Model.ApePaterno </p>
-</div>
-<div>
-    <p>Apellido Paterno:</p>
-    <p>@Model.ApeMaterno </p>
-</div>
-<div>
-    <p>Correo Electrónico:</p>
-    <p>@Model.Correo </p>
-</div>
-<div>
-    <p>Dirección:</p>
-    <p>@Model.Direccion </p>
-</div>
-<div>
-    <p>Referencia:</p>
-    <p>@Model.Referencia </p>
-</div>
-<div class="form-group">
-        <label asp-for="Nombre">Nombre:</label>
-        <input asp-for="Nombre" class="form-control">
+<form asp-controller="cuenta" asp-action="actualizarperfil" method="post">
+    <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault01">Nombre</label>
+      <input type="text" class="form-control" asp-for="Nombre" id="validationDefault01" placeholder="Nombres" value="@Model.Nombre" required>
+
     </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault02">Apellido Paterno </label>
+      <input type="text" class="form-control" asp-for="ApePaterno" id="validationDefault02" placeholder="Apellido Paterno" value="@Model.ApePaterno" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault02">Apellido Materno</label>
+      <input type="text" class="form-control" asp-for="ApeMaterno" id="validationDefault02" placeholder="Apellido Materno" value="@Model.ApeMaterno" required>
+    </div>    
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault03">Correo</label>
+      <input type="text" class="form-control" asp-for="Correo" id="validationDefault03" placeholder="e-mail" value="@Model.Correo" disabled>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault04">Direccion</label>
+      <input type="text" class="form-control" asp-for="Direccion" id="validationDefault04" placeholder="Dirección" value="@Model.Direccion" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault05">Referencia</label>
+      <input type="text" class="form-control" asp-for="Referencia" id="validationDefault05" placeholder="Referencia" value="@Model.Referencia" required>
+    </div>
+  </div>
+
+ <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault06">Telefono</label>
+      <input type="text" class="form-control" asp-for="Telefono" id="validationDefault06" placeholder="Teléfono" value="@Model.Telefono" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault07">DNI</label>
+      <input type="text" class="form-control" asp-for="Dni" id="validationDefault07" placeholder="DNI" value="@Model.Dni" required>
+
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+        <button class="btn btn-primary" type="submit">Actualizar</button>
+  </div>
+  </div>
+</form>

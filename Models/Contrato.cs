@@ -6,7 +6,7 @@ namespace LuzHogar.Models
 
         public Usuario Usuario { get; set; }
 
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
 
         public Mueble Mueble { get; set; }
 

@@ -51,8 +51,11 @@ namespace LuzHogar.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("AgregarMueble");
             }
+            
             return View("Index", "Home");
         }
+
+        
 
     }
 

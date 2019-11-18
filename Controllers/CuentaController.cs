@@ -27,7 +27,7 @@ namespace LuzHogar.Controllers
             _rm = rm;
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         public IActionResult AsociarRol()
         {
             ViewBag.Usuarios = _um.Users.ToList();
@@ -36,7 +36,7 @@ namespace LuzHogar.Controllers
             return View();
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult AsociarRol(string usuario, string rol)
         {
@@ -47,13 +47,13 @@ namespace LuzHogar.Controllers
             return RedirectToAction("index", "home");
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         public IActionResult CrearRol()
         {
             return View();
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         [HttpPost]
         public IActionResult CrearRol(string nombre)
         {
@@ -144,7 +144,6 @@ namespace LuzHogar.Controllers
         public IActionResult Logout()
         {
             _sim.SignOutAsync();
-
             return RedirectToAction("index", "home");
         }
 
@@ -152,14 +151,68 @@ namespace LuzHogar.Controllers
         public IActionResult Perfil()
         {
             var usuario = _um.GetUserAsync(this.User).Result;
-            var contratos = _context.Contratos.Include(x => x.Usuario)
-                                   .Where(x => x.UsuarioId == int.Parse(usuario.Id))
-                                   .ToList();
-            var pedidos = _context.PedidosEspeciales.Include(x => x.Usuario)
-                                   .Where(x => x.UsuarioId == int.Parse(usuario.Id))
-                                   .ToList();
+            
+            
 
             return View(usuario);
         }
+
+        [Authorize]
+        public IActionResult ActualizarPerfil(Usuario x)
+        {
+            
+            //if(ModelState.IsValid){
+                var usuario = _um.GetUserAsync(this.User).Result;
+                usuario.Nombre=x.Nombre;
+                usuario.ApePaterno=x.ApePaterno;
+                usuario.ApeMaterno=x.ApeMaterno;
+                usuario.Direccion=x.Direccion;
+                usuario.Dni=x.Dni;
+                usuario.Referencia=x.Referencia;
+                usuario.Telefono=x.Telefono;
+                _context.Update(usuario);
+                _context.SaveChanges();
+            //}
+
+            return RedirectToAction("perfil");
+        }
+
+        [Authorize]
+        public IActionResult ListaContratos(){
+            var usuario = _um.GetUserAsync(this.User).Result;
+            var contratos = _context.Contratos.Include(x => x.Usuario)
+                                   .Where(x => x.UsuarioId == usuario.Id)
+                                   .ToList();
+            
+            return View(contratos);
+        }
+
+        [Authorize]
+        public IActionResult ListaPedidos(){
+            var usuario = _um.GetUserAsync(this.User).Result;
+            var pedidos = _context.PedidosEspeciales.Include(x => x.Usuario)
+                                   .Where(x => x.UsuarioId == usuario.Id)
+                                   .ToList();
+            return View(pedidos);
+        }
+
+        [Authorize]
+        public IActionResult ActualizarPedido(int id, int acepta){
+            var pedido = _context.PedidosEspeciales
+                                   .Where(x => x.Id == id)
+                                   .FirstOrDefault();
+            if(acepta==1){
+                pedido.Estado="Fabricando el mueble";
+                _context.Update(pedido);
+            }else if(acepta==0){
+                _context.Remove(pedido);
+            }else{
+                return RedirectToAction("ListaPedidos","Cuenta");
+            }
+            _context.SaveChanges();
+            
+            return RedirectToAction("ListaPedidos","Cuenta");
+        }
+        
     }
 }

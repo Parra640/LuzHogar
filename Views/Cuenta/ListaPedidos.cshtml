@@ -1,0 +1,38 @@
+@model List<PedidoEspecial>
+
+<h1>Pedidos Especiales del cliente</h1>
+<Table class="table table-bordered table-hover table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre Mueble</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Color</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Color</td>
+                <td>@item.Precio</td>
+                <td>@item.Cantidad</td>
+                <td>@(item.Cantidad * item.Precio)</td>
+                @if(@item.Estado == "Esperando respuesta cliente") {
+                    <td>@item.Estado | <a href="~/Contrato/ActualizarPedido?id=@item.Id&acepta=1">Aceptar</a> | <a href="~/Contrato/ActualizarPedido?id=@item.Id&acepta=0">Cancelar</a></td>
+                }else{
+                    <td>@item.Estado</td>
+                }
+                    
+                <td>@item.Foto</td>
+                
+            </tr>
+        }
+    </tbody>
+</Table>
