@@ -40,6 +40,7 @@ namespace LuzHogar.Controllers
             {
                 var usuario = _um.GetUserAsync(this.User).Result;
                 var mueble=_context.Muebles.Where(m => m.Id==x.MuebleId).FirstOrDefault();
+                if(mueble.Stock>=x.Cantidad){
                 mueble.Stock=mueble.Stock-x.Cantidad;
                 _context.Update(mueble);
                 _context.SaveChanges();
@@ -54,10 +55,11 @@ namespace LuzHogar.Controllers
 
                 _context.Add(contrato);
                 _context.SaveChanges();
-
+                
                 return RedirectToAction("listacontratos", "cuenta");
+                }
             }
-            return View("Index","Home");
+            return View("ListaContratos","Home");
             
         }
 
