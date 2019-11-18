@@ -2,17 +2,16 @@
 
 <h1>Galeria de muebles</h1>
 
-
+<div class="row">
 @foreach (var item in Model)
 {
-    <div>
         //info de cada mueble
-        <div class="sm-4 center" >
-            <img src="@item.Foto" width="100px">
+        <div class="col-sm-4 border" >
+            <img src="@item.Foto" width="200px">
             <h3>@item.Nombre</h3>
             <p>@item.Descripcion</p>
             <a class="btn btn-primary" href="~/mueble/mueble?id=@item.Id">Mas Info</a>
         </div>
 
-    </div>
 }
+</div>

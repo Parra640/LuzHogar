@@ -1,5 +1,6 @@
 using System.Linq;
 using LuzHogar.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,18 +9,22 @@ namespace LuzHogar.Controllers
     public class ContratoController : Controller
     {
         private LuzHogarContext _context;
-        public ContratoController(LuzHogarContext c)
+        private UserManager<Usuario> _um;
+        public ContratoController(LuzHogarContext c, UserManager<Usuario> um)
         {
             _context = c;
+            _um=um;
         }
 
         [Authorize]
-        public IActionResult RegistrarContrato(int id, int cant)
+        public IActionResult RegistrarContrato(int id)
         {
+            var usuario = _um.GetUserAsync(this.User).Result;
             Contrato x= new Contrato();
             x.MuebleId=id;
             x.Mueble=_context.Muebles.Where(m => m.Id==id).FirstOrDefault();
-            x.Cantidad=cant;
+            x.UsuarioId=usuario.Id;
+            x.Usuario=usuario;
             return View(x);
             
         }
@@ -41,6 +46,8 @@ namespace LuzHogar.Controllers
         [Authorize]
         public IActionResult RegistrarPedidoEspecial()
         {
+            var usuario = _um.GetUserAsync(this.User).Result;
+            ViewBag.Usuario=usuario;
             return View();
         }
 
