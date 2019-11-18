@@ -161,7 +161,6 @@ namespace LuzHogar.Controllers
         public IActionResult ActualizarPerfil(Usuario x)
         {
             
-            //if(ModelState.IsValid){
                 var usuario = _um.GetUserAsync(this.User).Result;
                 usuario.Nombre=x.Nombre;
                 usuario.ApePaterno=x.ApePaterno;
@@ -172,7 +171,6 @@ namespace LuzHogar.Controllers
                 usuario.Telefono=x.Telefono;
                 _context.Update(usuario);
                 _context.SaveChanges();
-            //}
 
             return RedirectToAction("perfil");
         }

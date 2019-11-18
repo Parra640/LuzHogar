@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2019 a las 23:52:59
+-- Tiempo de generación: 18-11-2019 a las 01:53:02
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -141,7 +141,7 @@ CREATE TABLE `aspnetusers` (
 
 INSERT INTO `aspnetusers` (`Id`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`, `Discriminator`, `Nombre`, `ApePaterno`, `ApeMaterno`, `Direccion`, `Referencia`, `Telefono`, `Dni`, `Correo`) VALUES
 ('bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'daddygianko@gmail.com', 'DADDYGIANKO@GMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEIZrG68W7HXzEC6turlGAVHdY+ke5q0qXcmR6ytvWowf4p7V8PJkBf2YcscuD7IoHA==', '4DVECM4YXU7GDHBBIUCWNULZN4LY4J4R', 'b4a4c784-9dd4-4398-8a10-41913030160a', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'gianko', 'mello', 'loayza', '6tugy', '6tyg', '76867', '7679', 'daddygianko@gmail.com'),
-('c74c0aaf-db49-4c3e-9e9e-140745d35431', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEGD38k37lUfce6RNnfpO3p405gUk7ePr9ErH8GbspnZ8QsvdJrwHk/8w0biS72p0jA==', 'FKG4E4RKXILJNFXPC735VOE2OXWAX35T', '53586a0d-204f-4003-a57b-3c70d4379948', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'hola', 'a', 'todos', '6ut7yh', 'u7yiuhj', '234587', '67876', 'admin@hotmail.com');
+('c74c0aaf-db49-4c3e-9e9e-140745d35431', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEGD38k37lUfce6RNnfpO3p405gUk7ePr9ErH8GbspnZ8QsvdJrwHk/8w0biS72p0jA==', 'FKG4E4RKXILJNFXPC735VOE2OXWAX35T', '53586a0d-204f-4003-a57b-3c70d4379948', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'hola', 'a', 'nadie', '6ut7yh', 'u7yiuhj', '234587', '67876', 'admin@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -164,11 +164,10 @@ CREATE TABLE `aspnetusertokens` (
 
 CREATE TABLE `contratos` (
   `Id` int(11) NOT NULL,
-  `UsuarioId` int(11) NOT NULL DEFAULT 0,
+  `UsuarioId` varchar(255) DEFAULT NULL,
   `MuebleId` int(11) NOT NULL,
   `Progreso` longtext DEFAULT NULL,
-  `Cantidad` int(11) NOT NULL,
-  `UsuarioId1` varchar(255) DEFAULT NULL
+  `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -201,8 +200,7 @@ CREATE TABLE `pedidosespeciales` (
   `Precio` float NOT NULL,
   `Cantidad` int(11) NOT NULL,
   `Foto` longtext DEFAULT NULL,
-  `UsuarioId1` varchar(255) DEFAULT NULL,
-  `UsuarioId` int(11) NOT NULL,
+  `UsuarioId` varchar(255) DEFAULT NULL,
   `Estado` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -226,7 +224,8 @@ INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
 ('20191113051909_agregandoTablas', '2.2.6-servicing-10079'),
 ('20191113052742_ModificandoUsuario', '2.2.6-servicing-10079'),
 ('20191113192940_creacionadmi', '2.2.6-servicing-10079'),
-('20191116223629_cambioEnPedidoEspecial', '2.2.6-servicing-10079');
+('20191116223629_cambioEnPedidoEspecial', '2.2.6-servicing-10079'),
+('20191117221246_CambioIdUsuario', '2.2.6-servicing-10079');
 
 --
 -- Índices para tablas volcadas
@@ -287,7 +286,7 @@ ALTER TABLE `aspnetusertokens`
 ALTER TABLE `contratos`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `IX_Contratos_MuebleId` (`MuebleId`),
-  ADD KEY `IX_Contratos_UsuarioId1` (`UsuarioId1`);
+  ADD KEY `IX_Contratos_UsuarioId` (`UsuarioId`);
 
 --
 -- Indices de la tabla `muebles`
@@ -300,7 +299,7 @@ ALTER TABLE `muebles`
 --
 ALTER TABLE `pedidosespeciales`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `IX_PedidosEspeciales_UsuarioId1` (`UsuarioId1`);
+  ADD KEY `IX_PedidosEspeciales_UsuarioId` (`UsuarioId`);
 
 --
 -- Indices de la tabla `__efmigrationshistory`
@@ -381,14 +380,14 @@ ALTER TABLE `aspnetusertokens`
 -- Filtros para la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  ADD CONSTRAINT `FK_Contratos_AspNetUsers_UsuarioId1` FOREIGN KEY (`UsuarioId1`) REFERENCES `aspnetusers` (`Id`),
+  ADD CONSTRAINT `FK_Contratos_AspNetUsers_UsuarioId` FOREIGN KEY (`UsuarioId`) REFERENCES `aspnetusers` (`Id`),
   ADD CONSTRAINT `FK_Contratos_Muebles_MuebleId` FOREIGN KEY (`MuebleId`) REFERENCES `muebles` (`Id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pedidosespeciales`
 --
 ALTER TABLE `pedidosespeciales`
-  ADD CONSTRAINT `FK_PedidosEspeciales_AspNetUsers_UsuarioId1` FOREIGN KEY (`UsuarioId1`) REFERENCES `aspnetusers` (`Id`);
+  ADD CONSTRAINT `FK_PedidosEspeciales_AspNetUsers_UsuarioId` FOREIGN KEY (`UsuarioId`) REFERENCES `aspnetusers` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
