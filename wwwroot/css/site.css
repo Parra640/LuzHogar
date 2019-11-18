@@ -43,6 +43,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
+  background-color:#FBEEE6;
   margin-bottom: 60px;
 }
 .footer {
