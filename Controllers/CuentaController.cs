@@ -268,5 +268,19 @@ namespace LuzHogar.Controllers
                                    .ToList();
             return View(contratos);
         }
+
+        [Authorize]
+        public IActionResult CambiarProgresoAlContrato(int id, string progreso){
+            var contrato = _context.Contratos
+                                    .Include(x => x.Usuario)
+                                    .Include(x => x.Mueble)
+                                    .Where(x => x.Id==id)
+                                   .FirstOrDefault();
+
+            contrato.Progreso=progreso;
+            _context.Update(contrato);
+            _context.SaveChanges();
+            return RedirectToAction("AtenderContratos");
+        }
     }
 }

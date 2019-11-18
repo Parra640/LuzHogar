@@ -21,6 +21,8 @@
         @foreach (var item in Model)
         {
             @if(!(item.Progreso == "finalizado")){
+            <form method="get" asp-controller="cuenta" asp-action="CambiarProgresoAlContrato">
+                <input name="id" value="@item.Id" hidden>
             <tr>
                 <td>@item.Mueble.Nombre</td>
                 <td>@item.Mueble.Descripcion</td>
@@ -28,9 +30,10 @@
                 <td>@item.Mueble.Precio</td>
                 <td>@item.Cantidad</td>
                 <td>@(item.Cantidad * item.Mueble.Precio)</td>
-                <td>@item.Progreso</td>
+                <td><input value="@item.Progreso" name="progreso" > | <button class="btn">Actualizar</button></td>
                 <td><img src="@item.Mueble.Foto" width="200px"></td>
             </tr>
+            </form>
             }
         }
     </tbody>
