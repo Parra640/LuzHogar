@@ -1,0 +1,73 @@
+@model List<Contrato>
+
+<div class="row">
+    <h1 class="mx-auto sm-12">Contratos En Proceso</h1>
+</div>
+
+<Table class="table table-bordered table-hover table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre Mueble</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Color</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+            <th scope="col">Progreso</th>
+            <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if(!(string.Equals(@item.Progreso, "finalizado",  StringComparison.OrdinalIgnoreCase))){
+            <tr>
+                <td>@item.Mueble.Nombre</td>
+                <td>@item.Mueble.Descripcion</td>
+                <td>@item.Mueble.Color</td>
+                <td>@item.Mueble.Precio</td>
+                <td>@item.Cantidad</td>
+                <td>@(item.Cantidad * item.Mueble.Precio)</td>
+                <td>@item.Progreso</td>
+                <td><img src="@item.Mueble.Foto" width="200px"></td>
+            </tr>
+            }
+        }
+    </tbody>
+</Table>
+
+<div class="row">
+    <h1 class="mx-auto sm-12">Contratos Finalizados</h1>
+</div>
+
+<Table class="table table-bordered table-hover table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre Mueble</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Color</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+            <th scope="col">Progreso</th>
+            <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if(string.Equals(@item.Progreso, "finalizado",  StringComparison.OrdinalIgnoreCase)){
+            <tr>
+                <td>@item.Mueble.Nombre</td>
+                <td>@item.Mueble.Descripcion</td>
+                <td>@item.Mueble.Color</td>
+                <td>@item.Mueble.Precio</td>
+                <td>@item.Cantidad</td>
+                <td>@(item.Cantidad * item.Mueble.Precio)</td>
+                <td>@item.Progreso</td>
+                <td><img src="@item.Mueble.Foto" width="200px"></td>
+            </tr>
+            }
+        }
+    </tbody>
+</Table>

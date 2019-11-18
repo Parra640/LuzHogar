@@ -180,6 +180,7 @@ namespace LuzHogar.Controllers
             var usuario = _um.GetUserAsync(this.User).Result;
             var contratos = _context.Contratos.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == usuario.Id)
+                                   .OrderByDescending(x => x.Id)
                                    .ToList();
             
             return View(contratos);
@@ -190,6 +191,7 @@ namespace LuzHogar.Controllers
             var usuario = _um.GetUserAsync(this.User).Result;
             var pedidos = _context.PedidosEspeciales.Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == usuario.Id)
+                                   .OrderByDescending(x => x.Id)
                                    .ToList();
             return View(pedidos);
         }
@@ -211,6 +213,57 @@ namespace LuzHogar.Controllers
             
             return RedirectToAction("ListaPedidos","Cuenta");
         }
+
         
+        [Authorize]
+        public IActionResult AtenderPedidos(){
+            var pedidos = _context.PedidosEspeciales
+                                   .OrderByDescending(x => x.Id)
+                                   .ToList();
+            return View(pedidos);
+        }
+
+        [Authorize]
+        public IActionResult ColocarPrecioAlPedido(int id, float precio){
+            var pedido = _context.PedidosEspeciales
+                                   .Where(x => x.Id == id)
+                                   .FirstOrDefault();
+            pedido.Estado="Esperando respuesta cliente";
+            pedido.Precio=precio;
+            _context.Update(pedido);
+            _context.SaveChanges();
+            return RedirectToAction("AtenderPedidos");
+        }
+
+        [Authorize]
+        public IActionResult ColocarEstadoAlPedido(int id, string estado){
+            var pedido = _context.PedidosEspeciales
+                                   .Where(x => x.Id == id)
+                                   .FirstOrDefault();
+            pedido.Estado="Fabricando Mueble";
+            _context.Update(pedido);
+            _context.SaveChanges();
+            return RedirectToAction("AtenderPedidos");
+        }
+
+        [Authorize]
+        public IActionResult CancelarPedido(int id){
+            var pedido = _context.PedidosEspeciales
+                                   .Where(x => x.Id == id)
+                                   .FirstOrDefault();
+
+            _context.Remove(pedido);
+            _context.SaveChanges();
+            return RedirectToAction("AtenderPedidos");
+        }
+
+
+        [Authorize]
+        public IActionResult AtenderContratos(){
+            var contratos = _context.Contratos
+                                   .OrderByDescending(x => x.Id)
+                                   .ToList();
+            return View(contratos);
+        }
     }
 }

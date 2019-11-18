@@ -1,6 +1,8 @@
 @model List<PedidoEspecial>
 
-<h1>Pedidos Especiales del cliente</h1>
+<div class="row">
+    <h1 class="mx-auto sm-12">Pedidos Especiales del cliente</h1>
+</div>
 <Table class="table table-bordered table-hover table-responsive">
     <thead class="thead-dark">
         <tr>
@@ -30,7 +32,7 @@
                     <td>@item.Estado</td>
                 }
                     
-                <td>@item.Foto</td>
+                <td><img src="@item.Foto" width="200px"></td>
                 
             </tr>
         }

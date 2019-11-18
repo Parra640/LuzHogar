@@ -35,6 +35,10 @@ namespace LuzHogar.Controllers
         {
             if (ModelState.IsValid)
             {
+                Mueble mueble=_context.Muebles.Where(m => m.Id == x.MuebleId).FirstOrDefault();
+                mueble.Stock=mueble.Stock-1;
+                _context.Update(mueble);
+                x.mueble=mueble;
                 _context.Add(x);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");
