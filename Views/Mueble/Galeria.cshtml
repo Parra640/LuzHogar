@@ -6,11 +6,13 @@
 @foreach (var item in Model)
 {
         //info de cada mueble
-        <div class="col-sm-3 border p-1" >
-            <img src="@item.Foto" width="200px">
-            <h3>@item.Nombre</h3>
-            <p>@item.Descripcion</p>
-            <a class="btn btn-primary" href="~/mueble/mueble?id=@item.Id">Mas Info</a>
+        <div class="col-sm-3 border p-2" >
+            <div class="row">
+            <img class="col-sm-12 mb-2" src="@item.Foto" width="200px">
+            <h3 class="col-sm-8 mx-auto text-center">@item.Nombre</h3>
+            <p class="col-sm-8 mx-auto text-center">@item.Descripcion</p>
+            <a class="btn btn-primary col-sm-8 mx-auto" href="~/mueble/mueble?id=@item.Id">Mas Info</a>
+            </div>
         </div>
 
 }
