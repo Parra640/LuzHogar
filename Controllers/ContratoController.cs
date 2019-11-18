@@ -16,32 +16,46 @@ namespace LuzHogar.Controllers
             _um=um;
         }
 
+        
+
         [Authorize]
         public IActionResult RegistrarContrato(int id)
         {
-            var usuario = _um.GetUserAsync(this.User).Result;
-            Contrato x= new Contrato();
-            x.MuebleId=id;
-            x.Mueble=_context.Muebles.Where(m => m.Id==id).FirstOrDefault();
-            x.UsuarioId=usuario.Id;
-            x.Usuario=usuario;
-            return View(x);
+
+            RegistrarContratoViewModel viewModel=new RegistrarContratoViewModel();
+            var mueble=_context.Muebles.Where(m => m.Id==id).FirstOrDefault();
+            viewModel.MuebleId=id;
+            viewModel.Mueble=mueble;
+            viewModel.Progreso="";
+            viewModel.Cantidad=0;
+            return View(viewModel);
             
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult RegistrarContrato(Contrato x)
+        public IActionResult RegistrarContrato(RegistrarContratoViewModel x)
         {
             if (ModelState.IsValid)
             {
-                Mueble mueble=_context.Muebles.Where(m => m.Id == x.MuebleId).FirstOrDefault();
-                mueble.Stock=mueble.Stock-1;
+                var usuario = _um.GetUserAsync(this.User).Result;
+                var mueble=_context.Muebles.Where(m => m.Id==x.MuebleId).FirstOrDefault();
+                mueble.Stock=mueble.Stock-x.Cantidad;
                 _context.Update(mueble);
-                x.mueble=mueble;
-                _context.Add(x);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+
+                Contrato contrato= new Contrato();
+                contrato.MuebleId=mueble.Id;
+                contrato.Mueble=_context.Muebles.Where(m => m.Id==x.MuebleId).FirstOrDefault();
+                contrato.UsuarioId=usuario.Id;
+                contrato.Usuario=usuario;
+                contrato.Progreso=x.Progreso;
+                contrato.Cantidad=x.Cantidad;
+
+                _context.Add(contrato);
+                _context.SaveChanges();
+
+                return RedirectToAction("listacontratos", "cuenta");
             }
             return View("Index","Home");
             
@@ -50,22 +64,33 @@ namespace LuzHogar.Controllers
         [Authorize]
         public IActionResult RegistrarPedidoEspecial()
         {
-            var usuario = _um.GetUserAsync(this.User).Result;
-            ViewBag.Usuario=usuario;
+
             return View();
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult RegistrarPedidoEspecial(PedidoEspecial x)
+        public IActionResult RegistrarPedidoEspecial(RegistrarPedidoViewModel x)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(x);
+            if(ModelState.IsValid){
+                var usuario = _um.GetUserAsync(this.User).Result;
+                PedidoEspecial pedido=new PedidoEspecial();
+                pedido.Nombre=x.Nombre;
+                pedido.Color=x.Color;
+                pedido.Descripcion=x.Descripcion;
+                pedido.Cantidad=x.Cantidad;
+                pedido.Precio=x.Precio;
+                pedido.Foto=x.Foto;
+                pedido.Estado=x.Estado;
+                pedido.UsuarioId=usuario.Id;
+                pedido.Usuario=usuario;
+
+                _context.Add(pedido);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
             return View(x);
         }
+
     }
 }

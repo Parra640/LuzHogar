@@ -27,7 +27,7 @@
                 <td>@item.Cantidad</td>
                 <td>@(item.Cantidad * item.Precio)</td>
                 @if(@item.Estado == "Esperando respuesta cliente") {
-                    <td>@item.Estado | <a href="~/Contrato/ActualizarPedido?id=@item.Id&acepta=1">Aceptar</a> | <a href="~/Contrato/ActualizarPedido?id=@item.Id&acepta=0">Cancelar</a></td>
+                    <td>@item.Estado | <a href="~/Cuenta/ActualizarPedido?id=@item.Id&acepta=1">Aceptar</a> | <a href="~/Cuenta/ActualizarPedido?id=@item.Id&acepta=0">Cancelar</a></td>
                 }else{
                     <td>@item.Estado</td>
                 }

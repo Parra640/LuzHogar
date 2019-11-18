@@ -1,25 +1,22 @@
-@model Contrato
+@model RegistrarContratoViewModel
 
 <h1>Registrar Contrato</h1>
 
 
-<form method="post" asp-controller="contrato" asp-action="finalizarcontrato">
+<form method="post" asp-controller="contrato" asp-action="registrarcontrato">
   <div class="form-row">
     <label for="nombremueble" class="col-sm-2 col-form-label">Nombre Mueble</label>
     <div class="col-sm-6">
       <input type="text" disabled class="form-control" id="nombremueble" placeholder="Nombre Mueble" value="@Model.Mueble.Nombre">
     </div>
-    <label for="Cantidad" class="col-sm-2 col-form-label"></label>
+    <label for="Cantidad" class="col-sm-2 col-form-label">Cantidad</label>
     <div class="col-sm-2">
       <input asp-for="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad">
     </div>
   </div>
 
-
-    <input asp-for="Usuario" value="@Model.Usuario" hidden>
-    <input asp-for="UsuarioId" value="@Model.UsuarioId" hidden>
-    <input asp-for="Mueble" value="@Model.Mueble" hidden>
     <input asp-for="MuebleId" value="@Model.MuebleId" hidden>
+    <input asp-for="Mueble" value="@Model.Mueble" hidden>
     <input asp-for="Progreso" value="Fabricando Mueble" hidden>
     
     <h2>Pago Con Tarjeta</h2>

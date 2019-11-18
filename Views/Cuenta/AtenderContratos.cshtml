@@ -20,7 +20,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if(!(string.Equals(@item.Progreso, "finalizado",  StringComparison.OrdinalIgnoreCase))){
+            @if(!(item.Progreso == "finalizado")){
             <tr>
                 <td>@item.Mueble.Nombre</td>
                 <td>@item.Mueble.Descripcion</td>
@@ -56,7 +56,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if(string.Equals(@item.Progreso, "finalizado",  StringComparison.OrdinalIgnoreCase)){
+            @if(item.Progreso == "finalizado"){
             <tr>
                 <td>@item.Mueble.Nombre</td>
                 <td>@item.Mueble.Descripcion</td>
