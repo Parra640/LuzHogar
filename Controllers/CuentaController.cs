@@ -178,7 +178,9 @@ namespace LuzHogar.Controllers
         [Authorize]
         public IActionResult ListaContratos(){
             var usuario = _um.GetUserAsync(this.User).Result;
-            var contratos = _context.Contratos.Include(x => x.Usuario)
+            var contratos = _context.Contratos
+                                    .Include(x => x.Mueble)
+                                    .Include(x => x.Usuario)
                                    .Where(x => x.UsuarioId == usuario.Id)
                                    .OrderByDescending(x => x.Id)
                                    .ToList();
@@ -260,6 +262,8 @@ namespace LuzHogar.Controllers
         [Authorize]
         public IActionResult AtenderContratos(){
             var contratos = _context.Contratos
+                                    .Include(x => x.Usuario)
+                                    .Include(x => x.Mueble)
                                    .OrderByDescending(x => x.Id)
                                    .ToList();
             return View(contratos);
