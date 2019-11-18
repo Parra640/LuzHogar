@@ -182,7 +182,6 @@ namespace LuzHogar.Controllers
                                    .Where(x => x.UsuarioId == usuario.Id)
                                    .OrderByDescending(x => x.Id)
                                    .ToList();
-            
             return View(contratos);
         }
 

@@ -45,7 +45,7 @@ namespace LuzHogar.Controllers
                 _context.SaveChanges();
 
                 Contrato contrato= new Contrato();
-                contrato.MuebleId=mueble.Id;
+                contrato.MuebleId=x.MuebleId;
                 contrato.Mueble=_context.Muebles.Where(m => m.Id==x.MuebleId).FirstOrDefault();
                 contrato.UsuarioId=usuario.Id;
                 contrato.Usuario=usuario;
