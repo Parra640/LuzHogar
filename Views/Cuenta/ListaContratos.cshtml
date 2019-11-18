@@ -21,7 +21,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <!--
                 <td>@item.Mueble.Nombre</td>
                 <td>@item.Mueble.Descripcion</td>
                 <td>@item.Mueble.Color</td>
@@ -29,16 +28,7 @@
                 <td>@item.Cantidad</td>
                 <td>@(item.Cantidad * item.Mueble.Precio)</td>
                 <td>@item.Progreso</td>
-                <td><img src="@item.Mueble.Foto" width="200px"></td>
-                -->
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><img src="" width="200px"></td>
+                <td><img src="@item.Mueble.Foto" width="200px"></td>  
             </tr>
         }
     </tbody>
