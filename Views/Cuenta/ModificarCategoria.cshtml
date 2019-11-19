@@ -1,27 +1,27 @@
 @using Microsoft.AspNetCore.Identity;
 
-<h1>Asociar Rol</h1>
+<h1>Modificar Categoria</h1>
 
 <form method="post">
     @if(TempData["mensaje"]!=null){
         <div>@TempData["mensaje"]</div>
     }
     <div class="form-group">
-        <label>Usuario</label>        
-        <select class="form-control" name="usuario">
+        <label>Mueble</label>        
+        <select class="form-control" name="muebleId">
             @foreach (var item in (List<Usuario>)ViewBag.Usuarios)
             {
-                <option value="@item.Id">@item.UserName</option>
+                <option value="@item.Id">@item.Nombre</option>
             }
         </select>
     </div>
 
     <div class="form-group">
-        <label>Rol</label>        
-        <select class="form-control" name="rol">
-            @foreach (var item in (List<IdentityRole>)ViewBag.Roles)
+        <label>Categoria</label>        
+        <select class="form-control" name="categoriaId">
+            @foreach (var item in (List<Categoria>)ViewBag.Categorias)
             {
-                <option value="@item.Name">@item.Name</option>
+                <option value="@item.Id">@item.Nombre</option>
             }
         </select>
     </div>

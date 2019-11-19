@@ -42,7 +42,9 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav pr-sm-2">
-                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">Correo</a>
+                        </li>
                         @if (!User.Identity.IsAuthenticated) {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Cuenta" asp-action="Crear">Crear cuenta</a>
@@ -59,8 +61,12 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Comandos</a>
                                     <div class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" asp-controller="Mueble" asp-action="AgregarMueble">Agregar Mueble</a>
+                                        <a class="dropdown-item" asp-controller="Cuenta" asp-action="crearcategoria">Crear Categoria</a>
+                                        <a class="dropdown-item" asp-controller="Cuenta" asp-action="modificarcategoria">Modificar Categoria</a>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" asp-controller="Cuenta" asp-action="AtenderContratos">Mostrar Contratos</a>
                                         <a class="dropdown-item" asp-controller="Cuenta" asp-action="AtenderPedidos">Mostrar Pedidos</a>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="~/cuenta/crearrol">Crear Rol</a>
                                         <a class="dropdown-item" href="~/cuenta/asociarrol">Asociar Rol</a>
                                     </div>
@@ -77,7 +83,7 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" asp-controller="cuenta" asp-action="logout">Cerrar Sesión</a>
                                     </div>
-                                </li>
+                            </li>
                         }
                     </ul>
                 </div>

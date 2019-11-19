@@ -3,6 +3,7 @@ using LuzHogar.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace LuzHogar.Controllers
 {
@@ -26,10 +27,11 @@ namespace LuzHogar.Controllers
 
         public IActionResult Mueble(int id)
         {
-            var mueble = _context.Muebles.Where(x => x.Id == id).FirstOrDefault();
+            var mueble = _context.Muebles
+                            .Include(x => x.Categoria)
+                            .Where(x => x.Id == id)
+                            .FirstOrDefault();
             var usuario = _um.GetUserAsync(this.User).Result;
-
-            ViewBag.Usuario = usuario;
 
             return View(mueble);
         }
@@ -37,6 +39,8 @@ namespace LuzHogar.Controllers
         [Authorize(Roles="admin")]
         public IActionResult AgregarMueble()
         {
+            var categorias=_context.Categorias.OrderBy(x => x.Nombre).ToList();
+            ViewBag.Categorias=categorias;
             return View();
         }
 
@@ -45,14 +49,21 @@ namespace LuzHogar.Controllers
         [HttpPost]
         public IActionResult AgregarMueble(Mueble x)
         {
+            var categorias=_context.Categorias.OrderBy(c => c.Nombre).ToList();
+            ViewBag.Categorias=categorias;
             if (ModelState.IsValid)
             {
                 _context.Add(x);
                 _context.SaveChanges();
-                return RedirectToAction("AgregarMueble");
+                TempData["mensaje"]="Mueble agregado con éxito";
+                TempData["tipoTexto"]="text-success";
+                
+                return View();
             }
             
-            return View("Index", "Home");
+            TempData["mensaje"]="Error. No se pudo agregar el mueble";
+            TempData["tipoTexto"]="text-danger";
+            return View(x);
         }
 
         

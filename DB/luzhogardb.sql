@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2019 a las 01:53:02
+-- Tiempo de generación: 19-11-2019 a las 14:58:02
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -159,6 +159,24 @@ CREATE TABLE `aspnetusertokens` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `Id` int(11) NOT NULL,
+  `Nombre` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`Id`, `Nombre`) VALUES
+(1, 'Otros');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `contratos`
 --
 
@@ -183,7 +201,8 @@ CREATE TABLE `muebles` (
   `Descripcion` longtext DEFAULT NULL,
   `Precio` float NOT NULL,
   `Stock` int(11) NOT NULL,
-  `Foto` longtext DEFAULT NULL
+  `Foto` longtext DEFAULT NULL,
+  `CategoriaId` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -225,7 +244,8 @@ INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
 ('20191113052742_ModificandoUsuario', '2.2.6-servicing-10079'),
 ('20191113192940_creacionadmi', '2.2.6-servicing-10079'),
 ('20191116223629_cambioEnPedidoEspecial', '2.2.6-servicing-10079'),
-('20191117221246_CambioIdUsuario', '2.2.6-servicing-10079');
+('20191117221246_CambioIdUsuario', '2.2.6-servicing-10079'),
+('20191119131210_AgregadoCategorias', '2.2.6-servicing-10079');
 
 --
 -- Índices para tablas volcadas
@@ -281,6 +301,12 @@ ALTER TABLE `aspnetusertokens`
   ADD PRIMARY KEY (`UserId`,`LoginProvider`,`Name`);
 
 --
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indices de la tabla `contratos`
 --
 ALTER TABLE `contratos`
@@ -292,7 +318,8 @@ ALTER TABLE `contratos`
 -- Indices de la tabla `muebles`
 --
 ALTER TABLE `muebles`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Muebles_CategoriaId` (`CategoriaId`);
 
 --
 -- Indices de la tabla `pedidosespeciales`
@@ -324,22 +351,28 @@ ALTER TABLE `aspnetuserclaims`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `muebles`
 --
 ALTER TABLE `muebles`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidosespeciales`
 --
 ALTER TABLE `pedidosespeciales`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -382,6 +415,12 @@ ALTER TABLE `aspnetusertokens`
 ALTER TABLE `contratos`
   ADD CONSTRAINT `FK_Contratos_AspNetUsers_UsuarioId` FOREIGN KEY (`UsuarioId`) REFERENCES `aspnetusers` (`Id`),
   ADD CONSTRAINT `FK_Contratos_Muebles_MuebleId` FOREIGN KEY (`MuebleId`) REFERENCES `muebles` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `muebles`
+--
+ALTER TABLE `muebles`
+  ADD CONSTRAINT `FK_Muebles_Categorias_CategoriaId` FOREIGN KEY (`CategoriaId`) REFERENCES `categorias` (`Id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pedidosespeciales`

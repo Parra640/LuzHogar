@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using LuzHogar.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 
 namespace LuzHogar.Controllers
@@ -32,7 +31,6 @@ namespace LuzHogar.Controllers
         {
             ViewBag.Usuarios = _um.Users.ToList();
             ViewBag.Roles = _rm.Roles.ToList();
-
             return View();
         }
 
@@ -43,8 +41,12 @@ namespace LuzHogar.Controllers
             var user = _um.FindByIdAsync(usuario).Result;
 
             var resultado = _um.AddToRoleAsync(user, rol).Result;
-
-            return RedirectToAction("index", "home");
+            
+            TempData["mensaje"]="Categoria asociada con éxito";
+            TempData["tipoTexto"]="text-success";
+            ViewBag.Usuarios = _um.Users.ToList();
+            ViewBag.Roles = _rm.Roles.ToList();
+            return View();
         }
 
         [Authorize(Roles="admin")]
@@ -62,7 +64,14 @@ namespace LuzHogar.Controllers
 
             var resultado = _rm.CreateAsync(rol).Result;
 
-            return RedirectToAction("index", "home");
+            if(resultado.Succeeded){
+                TempData["mensaje"]="Rol creado con éxito";
+                TempData["tipoTexto"]="text-success";
+            }else{
+                TempData["mensaje"]="No se pudo crear el rol";
+                TempData["tipoTexto"]="text-danger";
+            }
+            return View();
         }
 
         public IActionResult Crear()
@@ -97,10 +106,14 @@ namespace LuzHogar.Controllers
 
                 if (resultado.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    TempData["mensaje"]="Cuenta creada con éxito";
+                    TempData["tipoTexto"]="text-success";
+                    return View();
                 }
                 else
                 {
+                    TempData["mensaje"]="Error. No se pudo crear a cuenta";
+                    TempData["tipoTexto"]="text-danger";
                     foreach (var item in resultado.Errors)
                     {
                         ModelState.AddModelError("", item.Description);
@@ -133,7 +146,8 @@ namespace LuzHogar.Controllers
                 }
                 else
                 {
-
+                    TempData["mensaje"]="Error. Datos incorrectos";
+                    TempData["tipoTexto"]="text-danger";
                     ModelState.AddModelError("", "Datos incorrectos");
                 }
             }
@@ -171,7 +185,8 @@ namespace LuzHogar.Controllers
                 usuario.Telefono=x.Telefono;
                 _context.Update(usuario);
                 _context.SaveChanges();
-
+                TempData["mensaje"]="Datos actualizados con éxito";
+                TempData["tipoTexto"]="text-success";
             return RedirectToAction("perfil");
         }
 
@@ -281,6 +296,58 @@ namespace LuzHogar.Controllers
             _context.Update(contrato);
             _context.SaveChanges();
             return RedirectToAction("AtenderContratos");
+        }
+
+        [Authorize(Roles="admin")]
+        public IActionResult CrearCategoria()
+        {
+            return View();
+        }
+
+        [Authorize(Roles="admin")]
+        [HttpPost]
+        public IActionResult CrearCategoria(string nombre)
+        {
+            var categoria = new Categoria();
+            categoria.Nombre = nombre;
+
+            _context.Update(categoria);
+            _context.SaveChanges();
+            TempData["mensaje"]="Categoria creada con éxito";
+            TempData["tipoTexto"]="text-success";
+            return View();
+        }
+
+        [Authorize(Roles="admin")]
+        public IActionResult ModificarCategoria()
+        {
+            ViewBag.Muebles = _context.Muebles.OrderBy(x => x.Nombre).ToList();
+            ViewBag.Categorias = _context.Categorias.OrderBy(x => x.Nombre).ToList();
+            
+            return View();
+        }
+
+        [Authorize(Roles="admin")]
+        [HttpPost]
+        public IActionResult ModificarCategoria(int muebleId, int catId)
+        {
+            var mueble=_context.Muebles
+                                    .Include(x => x.Categoria)
+                                    .Where(x => x.Id == muebleId).FirstOrDefault();
+
+            var categoria=_context.Categorias.Where(x => x.Id==catId).FirstOrDefault();
+
+            mueble.CategoriaId=categoria.Id;
+            mueble.Categoria=categoria;
+            
+            ViewBag.Muebles = _context.Muebles.OrderBy(x => x.Nombre).ToList();
+            ViewBag.Categorias = _context.Categorias.OrderBy(x => x.Nombre).ToList();
+            
+            _context.Update(mueble);
+            _context.SaveChanges();
+            TempData["mensaje"]="Categoria modificada con éxito";
+            TempData["tipoTexto"]="text-success";
+            return View();
         }
     }
 }
