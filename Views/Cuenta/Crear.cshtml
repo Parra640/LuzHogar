@@ -9,11 +9,9 @@ donde podra visualizar sus pedidos y estados de produccion</p>
 
 <form>
   <div class="form-row">
-    <div class="cold-md-12 mb-3">
     @if(TempData["mensaje"]!=null){
-        <div>@TempData["mensaje"]</div>
+        <div class='@TempData["tipoTexto"] my-2'>@TempData["mensaje"]</div>
     }
-    </div>
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Nombre</label>
       <input type="text" asp-for="Nombre" class="form-control" id="validationDefault01" placeholder="First name" value="Adela" required>
