@@ -92,18 +92,20 @@ namespace LuzHogar.Controllers
 
         [Authorize(Roles="admin")]
         [HttpPost]
-        public IActionResult ActualizarMueble(Mueble x)
+        public async System.Threading.Tasks.Task<IActionResult> ActualizarMuebleAsync(Mueble x)
         {
             var categorias=_context.Categorias.OrderBy(c => c.Nombre).ToList();
             ViewBag.Categorias=categorias;
+            
+            var mueble=_context.Muebles
+                        //.Include(c => c.Categoria)
+                        .Where(m => m.Id==x.Id)
+                        .FirstOrDefault();
 
             if (ModelState.IsValid)
             {
-                 var mueble=_context.Muebles
-                        .Include(x => x.Categoria)
-                        .Where(x => x.Id==muebleId)
-                        .FirstOrDefault();
-                TryUpdateModel(x);
+                 
+                await TryUpdateModelAsync(mueble);
 
                 
                 //_context.Update(x);

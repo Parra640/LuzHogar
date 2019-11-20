@@ -2,8 +2,9 @@
 
 <h1>Actualizar mueble</h1>
 
-<form method="post" asp-controller="mueble" asp-action="ActualizarMueble">
+<form method="post" asp-controller="mueble" asp-action="ActualizarMuebleAsync">
     <div asp-validation-summary="All"></div>
+    <input asp-for="Id" type="hidden">
 
     @if(TempData["mensaje"]!=null){
         <div class='@TempData["tipoTexto"] my-2'>@TempData["mensaje"]</div>
