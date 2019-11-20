@@ -256,7 +256,7 @@ namespace LuzHogar.Controllers
             var pedido = _context.PedidosEspeciales
                                    .Where(x => x.Id == id)
                                    .FirstOrDefault();
-            pedido.Estado="Fabricando Mueble";
+            pedido.Estado=estado;
             _context.Update(pedido);
             _context.SaveChanges();
             return RedirectToAction("AtenderPedidos");

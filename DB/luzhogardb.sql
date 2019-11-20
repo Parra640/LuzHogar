@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2019 a las 14:58:02
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.3.6
+-- Tiempo de generación: 20-11-2019 a las 20:09:36
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,8 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `aspnetroleclaims` (
   `Id` int(11) NOT NULL,
   `RoleId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `ClaimType` longtext,
+  `ClaimValue` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -45,7 +45,7 @@ CREATE TABLE `aspnetroles` (
   `Id` varchar(255) NOT NULL,
   `Name` varchar(256) DEFAULT NULL,
   `NormalizedName` varchar(256) DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL
+  `ConcurrencyStamp` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -65,8 +65,8 @@ INSERT INTO `aspnetroles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) V
 CREATE TABLE `aspnetuserclaims` (
   `Id` int(11) NOT NULL,
   `UserId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `ClaimType` longtext,
+  `ClaimValue` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,7 +78,7 @@ CREATE TABLE `aspnetuserclaims` (
 CREATE TABLE `aspnetuserlogins` (
   `LoginProvider` varchar(255) NOT NULL,
   `ProviderKey` varchar(255) NOT NULL,
-  `ProviderDisplayName` longtext DEFAULT NULL,
+  `ProviderDisplayName` longtext,
   `UserId` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,24 +115,24 @@ CREATE TABLE `aspnetusers` (
   `Email` varchar(256) DEFAULT NULL,
   `NormalizedEmail` varchar(256) DEFAULT NULL,
   `EmailConfirmed` bit(1) NOT NULL,
-  `PasswordHash` longtext DEFAULT NULL,
-  `SecurityStamp` longtext DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL,
-  `PhoneNumber` longtext DEFAULT NULL,
+  `PasswordHash` longtext,
+  `SecurityStamp` longtext,
+  `ConcurrencyStamp` longtext,
+  `PhoneNumber` longtext,
   `PhoneNumberConfirmed` bit(1) NOT NULL,
   `TwoFactorEnabled` bit(1) NOT NULL,
   `LockoutEnd` datetime(6) DEFAULT NULL,
   `LockoutEnabled` bit(1) NOT NULL,
   `AccessFailedCount` int(11) NOT NULL,
   `Discriminator` longtext NOT NULL,
-  `Nombre` longtext DEFAULT NULL,
-  `ApePaterno` longtext DEFAULT NULL,
-  `ApeMaterno` longtext DEFAULT NULL,
-  `Direccion` longtext DEFAULT NULL,
-  `Referencia` longtext DEFAULT NULL,
-  `Telefono` longtext DEFAULT NULL,
-  `Dni` longtext DEFAULT NULL,
-  `Correo` longtext DEFAULT NULL
+  `Nombre` longtext,
+  `ApePaterno` longtext,
+  `ApeMaterno` longtext,
+  `Direccion` longtext,
+  `Referencia` longtext,
+  `Telefono` longtext,
+  `Dni` longtext,
+  `Correo` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -140,8 +140,8 @@ CREATE TABLE `aspnetusers` (
 --
 
 INSERT INTO `aspnetusers` (`Id`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`, `Discriminator`, `Nombre`, `ApePaterno`, `ApeMaterno`, `Direccion`, `Referencia`, `Telefono`, `Dni`, `Correo`) VALUES
-('bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'daddygianko@gmail.com', 'DADDYGIANKO@GMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEIZrG68W7HXzEC6turlGAVHdY+ke5q0qXcmR6ytvWowf4p7V8PJkBf2YcscuD7IoHA==', '4DVECM4YXU7GDHBBIUCWNULZN4LY4J4R', 'b4a4c784-9dd4-4398-8a10-41913030160a', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'gianko', 'mello', 'loayza', '6tugy', '6tyg', '76867', '7679', 'daddygianko@gmail.com'),
-('c74c0aaf-db49-4c3e-9e9e-140745d35431', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'0', 'AQAAAAEAACcQAAAAEGD38k37lUfce6RNnfpO3p405gUk7ePr9ErH8GbspnZ8QsvdJrwHk/8w0biS72p0jA==', 'FKG4E4RKXILJNFXPC735VOE2OXWAX35T', '53586a0d-204f-4003-a57b-3c70d4379948', NULL, b'0', b'0', NULL, b'1', 0, 'Usuario', 'hola', 'a', 'nadie', '6ut7yh', 'u7yiuhj', '234587', '67876', 'admin@hotmail.com');
+('bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'daddygianko@gmail.com', 'DADDYGIANKO@GMAIL.COM', NULL, NULL, b'1111111111111111111111111111111', 'AQAAAAEAACcQAAAAEIZrG68W7HXzEC6turlGAVHdY+ke5q0qXcmR6ytvWowf4p7V8PJkBf2YcscuD7IoHA==', '4DVECM4YXU7GDHBBIUCWNULZN4LY4J4R', 'b4a4c784-9dd4-4398-8a10-41913030160a', NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', NULL, b'1111111111111111111111111111111', 0, 'Usuario', 'gianfranco', 'mello', 'loayza', '6tugy', '6tyg', '76867', '7679', 'daddygianko@gmail.com'),
+('c74c0aaf-db49-4c3e-9e9e-140745d35431', 'admin@hotmail.com', 'ADMIN@HOTMAIL.COM', NULL, NULL, b'1111111111111111111111111111111', 'AQAAAAEAACcQAAAAEGD38k37lUfce6RNnfpO3p405gUk7ePr9ErH8GbspnZ8QsvdJrwHk/8w0biS72p0jA==', 'FKG4E4RKXILJNFXPC735VOE2OXWAX35T', '53586a0d-204f-4003-a57b-3c70d4379948', NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', NULL, b'1111111111111111111111111111111', 0, 'Usuario', 'admin', 'sdiuj', 'sudj', '6ut7yh', 'u7yiuhj', '234587', '67876', 'admin@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `aspnetusertokens` (
   `UserId` varchar(255) NOT NULL,
   `LoginProvider` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Value` longtext DEFAULT NULL
+  `Value` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -164,7 +164,7 @@ CREATE TABLE `aspnetusertokens` (
 
 CREATE TABLE `categorias` (
   `Id` int(11) NOT NULL,
-  `Nombre` longtext DEFAULT NULL
+  `Nombre` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -172,7 +172,10 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`Id`, `Nombre`) VALUES
-(1, 'Otros');
+(1, 'Otros'),
+(5, 'Comedor'),
+(6, 'Sala'),
+(7, 'Dormitorio');
 
 -- --------------------------------------------------------
 
@@ -184,9 +187,16 @@ CREATE TABLE `contratos` (
   `Id` int(11) NOT NULL,
   `UsuarioId` varchar(255) DEFAULT NULL,
   `MuebleId` int(11) NOT NULL,
-  `Progreso` longtext DEFAULT NULL,
+  `Progreso` longtext,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `contratos`
+--
+
+INSERT INTO `contratos` (`Id`, `UsuarioId`, `MuebleId`, `Progreso`, `Cantidad`) VALUES
+(13, 'bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 5, 'finalizado', 1);
 
 -- --------------------------------------------------------
 
@@ -196,14 +206,23 @@ CREATE TABLE `contratos` (
 
 CREATE TABLE `muebles` (
   `Id` int(11) NOT NULL,
-  `Nombre` longtext DEFAULT NULL,
-  `Color` longtext DEFAULT NULL,
-  `Descripcion` longtext DEFAULT NULL,
+  `Nombre` longtext,
+  `Color` longtext,
+  `Descripcion` longtext,
   `Precio` float NOT NULL,
   `Stock` int(11) NOT NULL,
-  `Foto` longtext DEFAULT NULL,
-  `CategoriaId` int(11) NOT NULL DEFAULT 0
+  `Foto` longtext,
+  `CategoriaId` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `muebles`
+--
+
+INSERT INTO `muebles` (`Id`, `Nombre`, `Color`, `Descripcion`, `Precio`, `Stock`, `Foto`, `CategoriaId`) VALUES
+(3, 'Sillon 01', 'gris', 'para 3 personas', 120, 10, 'https://mlstaticquic-a.akamaihd.net/sofa-cama-livings-sillon-cama-living-sala-sillones-divino-D_NQ_NP_893527-MLU27776353065_072018-F.jpg', 1),
+(4, 'Mesa Comedor 01', 'marron', 'mesa para el comedor sin sillas', 170, 5, 'http://siducdesign.com/wp-content/uploads/2019/02/Untitled-8.jpg', 5),
+(5, 'Cama 02', 'marron oscuro', 'para 2 personas', 250, 19, 'https://rosen.vteximg.com.br/arquivos/ids/178767-830-830/Cama-Ergo-T-2-Plazas-Base-Dividida-con-Textil-y-Muebles-Bilbao-1-29.jpg?v=636426311845700000', 7);
 
 -- --------------------------------------------------------
 
@@ -213,15 +232,23 @@ CREATE TABLE `muebles` (
 
 CREATE TABLE `pedidosespeciales` (
   `Id` int(11) NOT NULL,
-  `Nombre` longtext DEFAULT NULL,
-  `Color` longtext DEFAULT NULL,
-  `Descripcion` longtext DEFAULT NULL,
+  `Nombre` longtext,
+  `Color` longtext,
+  `Descripcion` longtext,
   `Precio` float NOT NULL,
   `Cantidad` int(11) NOT NULL,
-  `Foto` longtext DEFAULT NULL,
+  `Foto` longtext,
   `UsuarioId` varchar(255) DEFAULT NULL,
-  `Estado` longtext DEFAULT NULL
+  `Estado` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedidosespeciales`
+--
+
+INSERT INTO `pedidosespeciales` (`Id`, `Nombre`, `Color`, `Descripcion`, `Precio`, `Cantidad`, `Foto`, `UsuarioId`, `Estado`) VALUES
+(2, 'cama grande', 'azul', 'para dos personas', 800, 1, 'https://rosen.vteximg.com.br/arquivos/ids/178767-830-830/Cama-Ergo-T-2-Plazas-Base-Dividida-con-Textil-y-Muebles-Bilbao-1-29.jpg?v=636426311845700000', 'bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'Fabricando el mueble'),
+(3, 'cama 4', 'gris', 'cama grandota', 500, 2, 'https://rosen.vteximg.com.br/arquivos/ids/178767-830-830/Cama-Ergo-T-2-Plazas-Base-Dividida-con-Textil-y-Muebles-Bilbao-1-29.jpg?v=636426311845700000', 'bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -343,37 +370,31 @@ ALTER TABLE `__efmigrationshistory`
 --
 ALTER TABLE `aspnetroleclaims`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `aspnetuserclaims`
 --
 ALTER TABLE `aspnetuserclaims`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `muebles`
 --
 ALTER TABLE `muebles`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `pedidosespeciales`
 --
 ALTER TABLE `pedidosespeciales`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

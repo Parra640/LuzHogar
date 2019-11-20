@@ -22,6 +22,7 @@
             @if(@item.Estado == "Esperando precio") {
             <tr>
                 <form method="get" asp-action="ColocarPrecioAlPedido">
+                <input name="id" value="@item.Id" hidden>
                 <td>@item.Nombre</td>
                 <td>@item.Descripcion</td>
                 <td>@item.Color</td>
@@ -30,7 +31,7 @@
                 <td>@(item.Cantidad * item.Precio)</td>
                 <td>@item.Estado</td>
                 <td><img src="@item.Foto" width="200px"></td>
-                <input name="id" value="@item.Id" hidden>
+                
                 </form>
             </tr>
             }
@@ -57,9 +58,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if(!(@item.Estado == "finalizado") && !(@item.Estado == "Esperando precio")) {
+            @if(!(@item.Estado == "Finalizado") && !(@item.Estado == "Esperando precio")) {
             <tr>
-                <form method="get" asp-action="ColocarEstadoAlPedido">
+                <form method="get" asp-controller="cuenta" asp-action="ColocarEstadoAlPedido">
+                <input name="id" value="@item.Id" hidden>
                 <td>@item.Nombre</td>
                 <td>@item.Descripcion</td>
                 <td>@item.Color</td>
@@ -68,6 +70,7 @@
                 <td>@(item.Cantidad * item.Precio)</td>
                 <td><input name="estado" value="@item.Estado"> | <Button class="btn" >Actualizar</Button> | <a class="btn" href="~/Contrato/CancelarPedido?id=@item.Id">Cancelar</a></td>
                 <td><img src="@item.Foto" width="200px"></td>
+                
                 </form>
             </tr>
             }
@@ -94,7 +97,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if(@item.Estado == "Esperando respuesta cliente") {
+            @if(@item.Estado == "Finalizado") {
             <tr>
                 <td>@item.Nombre</td>
                 <td>@item.Descripcion</td>
