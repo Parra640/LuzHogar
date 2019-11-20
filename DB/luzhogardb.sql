@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2019 a las 20:09:36
+-- Tiempo de generación: 20-11-2019 a las 20:51:24
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 7.1.7
 
@@ -191,13 +191,6 @@ CREATE TABLE `contratos` (
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `contratos`
---
-
-INSERT INTO `contratos` (`Id`, `UsuarioId`, `MuebleId`, `Progreso`, `Cantidad`) VALUES
-(13, 'bd33c6b2-b8b7-46ed-8919-02cb00491e2c', 5, 'finalizado', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -220,9 +213,9 @@ CREATE TABLE `muebles` (
 --
 
 INSERT INTO `muebles` (`Id`, `Nombre`, `Color`, `Descripcion`, `Precio`, `Stock`, `Foto`, `CategoriaId`) VALUES
-(3, 'Sillon 01', 'gris', 'para 3 personas', 120, 10, 'https://mlstaticquic-a.akamaihd.net/sofa-cama-livings-sillon-cama-living-sala-sillones-divino-D_NQ_NP_893527-MLU27776353065_072018-F.jpg', 1),
-(4, 'Mesa Comedor 01', 'marron', 'mesa para el comedor sin sillas', 170, 5, 'http://siducdesign.com/wp-content/uploads/2019/02/Untitled-8.jpg', 5),
-(5, 'Cama 02', 'marron oscuro', 'para 2 personas', 250, 19, 'https://rosen.vteximg.com.br/arquivos/ids/178767-830-830/Cama-Ergo-T-2-Plazas-Base-Dividida-con-Textil-y-Muebles-Bilbao-1-29.jpg?v=636426311845700000', 7);
+(6, 'Comodin ', 'Blanco', 'Bordes dorados', 700, 4, 'https://www.prixdoo.com/wp-content/uploads/2018/11/A213-V_styl-500x400.jpg', 7),
+(7, 'Ropero', 'Marrón', 'Manijas plata', 1000, 2, 'https://d-gala.com/wp-content/uploads/2018/03/Closet-500x400.jpg', 7),
+(8, 'Mesa', 'Mostaza', 'Patas marrones', 500, 8, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyUbfxIVFX1qzdUhu2hRKWslYU27byJODlGUDboZC2Wp_KBAIAoQ&s', 6);
 
 -- --------------------------------------------------------
 
@@ -389,7 +382,7 @@ ALTER TABLE `contratos`
 -- AUTO_INCREMENT de la tabla `muebles`
 --
 ALTER TABLE `muebles`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `pedidosespeciales`
 --
