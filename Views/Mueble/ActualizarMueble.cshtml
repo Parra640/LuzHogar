@@ -32,8 +32,11 @@
                 if(Model.CategoriaId==item.Id){
                     seleccionado="selected";
                 }
+                else {
+                    seleccionado = null;
+                }
                 
-                <option value="@item.Id" @seleccionado >@item.Nombre</option>
+                <option value="@item.Id" selected="@seleccionado" >@item.Nombre</option>
             }
         </select>
     </div>
